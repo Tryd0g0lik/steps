@@ -1,6 +1,6 @@
-*.config.js
+
 .*
-webpack.*.js
+*.js
 
 **/dist
 
