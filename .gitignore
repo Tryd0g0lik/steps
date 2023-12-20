@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-__tests__/__component-test__/screen/*.png
+# __tests__/__component-test__/screen/*.png
 # production
 /build
 
