@@ -18,12 +18,14 @@ export default function InputFC({
   return (
     <div className="block">
       <HeaderFC header={header} />
+      <label htmlFor={inputId}>
       <div className="interiorBlock">
         {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
-        <label htmlFor={inputId}>
+
           <input name={inputName} id={inputId} type={inputType} required />
-        </label>
-      </div>
+
+        </div>
+      </label>
     </div>
   )
 }

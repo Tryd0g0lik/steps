@@ -74,6 +74,9 @@
   font-weight: bold;
 }
 
+button h2 {
+  margin: 0;
+}
 input, button {
   border: none;
   text-align: center;

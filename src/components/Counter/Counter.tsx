@@ -9,9 +9,11 @@ export default function CounterFC() {
     <form className="form" >
       <div className="menu">
         {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
+
         <InputFC inputId={uniqueInputId + 'date'} header={"Дата (ДД.ММ.ГГ)"} inputType={"date"} inputName={"date"} />
 
         {/* <input name="distanc" type="number" value={form.distanc} onChange={handleChange} required /> */}
+
         <InputFC inputId={uniqueInputId + 'distance'} header={"Пройдено км"} inputType={"number"} inputName={"distanc"} />
 
         <div className="blockOk">
