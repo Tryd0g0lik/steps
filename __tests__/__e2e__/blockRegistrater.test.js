@@ -1,15 +1,10 @@
 import puppeteer, { Locator } from 'puppeteer-core';
 import { v4 as uuidv4, v6 as uuidv6 } from 'uuid';
 
-// interface Indicator {
-//   i: string
-// }
 const set = new Set();
-// const ind = uuidv4();
-// const indVersion = uuidVersion(ind);
+
 function index() {
   const ind = uuidv4();
-  // set.add(i)
   set.has(ind) ? index() : set.add(ind);
   return ind
 }

@@ -1,19 +1,21 @@
 import React from "react";
 import HeaderFC from "../Header.tsx";
-interface Forms {
-  header: string;
-  inputName: string;
-  inputType: string;
-  inputId?: string
+import { Forms } from "../../header-interface.tsx";
 
-}
+/**
+ * The entry point is a intarfice's type "Forms"
+ * @param header: It's a block title
+ * @param param0:
+ * @returns block TSX
+ */
 export default function InputFC({
   header,
   inputName,
   inputType,
   inputId = '0',
+  onSetEventCall
 }: Forms) {
-
+  const handleClick = onSetEventCall;
   // const { header } = prop.forms;
   return (
     <div className="block">
@@ -22,8 +24,7 @@ export default function InputFC({
       <div className="interiorBlock">
         {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
 
-          <input name={inputName} id={inputId} type={inputType} required />
-
+          <input name={inputName} id={inputId} type={inputType} onClick={onSetEventCall} required />
         </div>
       </label>
     </div>
