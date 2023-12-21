@@ -6,9 +6,13 @@ insert_final_newline = true
 charset = utf-8
 indent_style = space
 indent_size = 2
+# игнорируем длинные строки
 max_line_length = off
 
-[*.{js, css}]
+[*.(ts, js, css)]
+curly_bracker_next_line = true
 
-[*.md]
+[*.min.*]
+indent_style = ignore
 trim_trailing_whitespace = false
+insert_final_newline = false

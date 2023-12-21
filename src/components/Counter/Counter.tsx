@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import InputFC from "./Input.tsx";
+import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
 export default function CounterFC() {
   const uniqueInputId = useId();
