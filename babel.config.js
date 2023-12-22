@@ -1,8 +1,6 @@
-
 module.exports = {
   presets: [
     '@babel/preset-env',
-    '@babel/eslint-parser',
     '@babel/preset-react',
     '@babel/preset-typescript'
   ],

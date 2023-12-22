@@ -4,53 +4,38 @@ module.exports = {
 
   "env": {
     "browser": true,
-    // "es6": true
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
-
   "extends": [
-    // "tsconfig.json",
     "standard-with-typescript",
     "react-app",
-    // "eslint:recommended",
-    // "plugin:react/recommended",
-    "react-app/jest"
 
+    "react-app/jest"
   ],
   "parserOptions": {
-    // "requireConfigFile": false,
-
-    "ecmaVersion": 2018,
-    "sourceType": 'module',
     "ecmaFeatures": {
-      // "globalReturn": true,
-      "jsx": true
+      "jsx": true,
     },
-    // "presets": ['@babel/preset-env', '@babel/preset-typescript'],
+    "ecmaVersion": 18,
+    "sourceType": 'module',
+
   },
   "plugins": [
     'react',
-    // 'react/jsx-runtime',
     '@typescript-eslint',
 
 
   ],
   "parser": '@typescript-eslint/parser',
-  // "extend": ['plugin:@typescript-eslint/recommended'],
   'overrides': [
     {
-
-      "files": ['./src/**/*.tsx', './src/*.tsx'],
-
+      "files": ['src/**/*.tsx', 'src/*.tsx'],
 
 
       "rules": {
-        // "react/jsx-uses-react": "error",
-        // "react/jsx-uses-vars": "error",
-
     "multiline-comment-style": ["error", "bare-block"], // https://eslint.org/docs/latest/rules/multiline-comment-style#rule-details
         "symbol-description": "error",
-        // "symbol-description": ["error", "starred-block"],
     "require-await": "error", // https://eslint.org/docs/head/rules/require-await Запретить асинхронные функции, которые не имеют выражения ожидания
     "prefer-template": "error", //https://eslint.org/docs/head/rules/prefer-template#examples использования операторов + со строками.
     "no-lone-blocks": "error",
