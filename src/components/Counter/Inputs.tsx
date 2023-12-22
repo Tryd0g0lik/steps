@@ -14,7 +14,7 @@ export default function InputFC({
   inputId = '0',
   handleClick
 }: Forms) {
-  // const { header } = prop.forms;
+  //const { header } = prop.forms;
   return (
     <div className="block">
       <HeaderFC header={header} />
