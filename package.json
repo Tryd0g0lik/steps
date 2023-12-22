@@ -25,10 +25,12 @@
     "start:tailwindcss": "npx tailwindcss -i ./src/index.css -o ./src/styles/output.css --watch",
     "build": "webpack --mode=production --node-env=production",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
+    "@babel/eslint-parser": "^7.23.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-class-properties": "^7.23.3",
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
@@ -49,6 +51,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.4.0",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-webpack-plugin": "^4.0.1",
     "html-webpack-plugin": "^5.5.3",
     "i": "^0.3.7",

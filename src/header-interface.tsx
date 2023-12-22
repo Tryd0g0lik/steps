@@ -2,8 +2,8 @@ import React from "react";
 
 /**
  * Intarface is name "HeadersInterfaces"
- * @param header:string;
- */
+  @param header:string;
+*/
 interface ButtonClickFunction {
 
   (item: React.MouseEvent<HTMLButtonElement>): void
@@ -19,7 +19,7 @@ export interface HeadersInterfaces {
 };
 /**
  * Intarface is name "Forms"
- * @param header: string;
+  @param header: string;
  * @param inputName: string;
  * @param inputType: string;
  * @param inputId?: string;
