@@ -1,6 +1,6 @@
 import React from "react";
-import HeaderFC from "../Header.tsx";
-import { Forms } from "../../header-interface.tsx";
+import HeaderFC from "../Header";
+import { type Forms } from "../../header-interface";
 /**
  * The entry point is a intarfice's type "Forms"
   * @param header: It's a block title
@@ -11,10 +11,10 @@ export default function InputFC({
   header,
   inputName,
   inputType,
-  inputId = '0',
-  handleClick
-}: Forms) {
-  //const { header } = prop.forms;
+  inputId = "0",
+  handleClick,
+}: Forms): React.JSX.Element {
+  // const { header } = prop.forms;
   return (
     <div className="block">
       <HeaderFC header={header} />
@@ -26,5 +26,5 @@ export default function InputFC({
         </div>
       </label>
     </div>
-  )
+  );
 }
