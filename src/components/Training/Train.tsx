@@ -1,5 +1,5 @@
 import React from "react";
-import HandleRemoveFC from "./HandleRemove";
+import HandleRemoveFC from "./HandleRemove.tsx";
 // import ButtonFC from "../Buttons.tsx";
 
 export default function TrainFC(): React.JSX.Element {

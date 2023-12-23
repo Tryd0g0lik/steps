@@ -24,6 +24,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-type-checked", // https://typescript-eslint.io/linting/configs#recommended-type-checked
     "plugin:@typescript-eslint/strict",  // https://typescript-eslint.io/linting/configs#strict
     "plugin:@typescript-eslint/stylistic"  // https://typescript-eslint.io/linting/configs#stylistic
+
   ],
   "overrides": [
   ],
@@ -49,6 +50,7 @@ module.exports = {
     "@typescript-eslint/quotes": ["error", "double"],
     "@stylistic/js/no-mixed-spaces-and-tabs": "error",
     "@stylistic/indent": ["error", 2],
-    "@typescript-eslint/no-non-null-assertion": "error"
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "import/extensions": ["error", "never", { "tsx": "always" }]
   }
 }

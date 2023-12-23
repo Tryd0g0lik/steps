@@ -1,5 +1,5 @@
 import React from "react";
-import { type HeadersInterfaces } from "../header-interface";
+import { type HeadersInterfaces } from "../header-interface.tsx";
 
 /**
  * The entry point is a interface's type Headers Interfaces

@@ -1,6 +1,6 @@
 import React from "react";
-import HeaderFC from "../Header";
-import { type Forms } from "../../header-interface";
+import HeaderFC from "../Header.tsx";
+import { type Forms } from "../../header-interface.tsx";
 /**
  * The entry point is a intarfice's type "Forms"
   * @param header: It's a block title

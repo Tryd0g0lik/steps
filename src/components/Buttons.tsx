@@ -1,6 +1,6 @@
 import React from "react";
-import { type HeadersInterfaces as HeaderInterface } from "../header-interface";
-import HeaderFC from "./Header";
+import { type HeadersInterfaces as HeaderInterface } from "../header-interface.tsx";
+import HeaderFC from "./Header.tsx";
 
 /**
  *
