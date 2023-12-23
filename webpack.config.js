@@ -20,7 +20,8 @@ module.exports = {
             options: {
               configFile: path.resolve(__dirname, 'babel.config.js'),
             }
-          },
+          }
+
         ],
       },
       {
@@ -45,12 +46,7 @@ module.exports = {
       template: './public/index.html',
     }),
     new ESLintPlugin({
-      files: [
-        path.resolve(__dirname, 'src'),
-
-      ],
-      overrideConfigFile: path.resolve(__dirname, 'eslint.config.js'),
-
+      files: path.resolve(__dirname, 'src/'),
 
     })
   ],
