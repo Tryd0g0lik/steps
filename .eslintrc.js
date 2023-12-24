@@ -1,6 +1,5 @@
 module.exports = {
   "root": true,
-  // "extends": "./tsconfig.json", // https://typescript-eslint.io/linting/typed-linting/monorepos
   "env": {
     "browser": true,
     "commonjs": true,
@@ -23,7 +22,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "plugin:@typescript-eslint/recommended-type-checked", // https://typescript-eslint.io/linting/configs#recommended-type-checked
     "plugin:@typescript-eslint/strict",  // https://typescript-eslint.io/linting/configs#strict
-    "plugin:@typescript-eslint/stylistic"  // https://typescript-eslint.io/linting/configs#stylistic
+
 
   ],
   "overrides": [
@@ -31,7 +30,7 @@ module.exports = {
   "parser": "@typescript-eslint/parser",
   "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,
-    // "project": ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
+
     "tsconfigRootDir": __dirname,
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -40,23 +39,24 @@ module.exports = {
     }
   },
 
-  // "include": [
-  //   "src"
-  // ],
 
   "rules": {
+    "react/prop-types": 0,
     "quotes": "off",
     '@stylistic/js/indent': ['error', 2],
     "@typescript-eslint/quotes": ["error", "double"],
     "@stylistic/js/no-mixed-spaces-and-tabs": "error",
     "@stylistic/indent": ["error", 2],
     "@typescript-eslint/no-non-null-assertion": "error",
-    "@typescript-eslint/restrict-template-expressions": [
+
+    "import/extensions": [
       "error",
+      "ignorePackages",
       {
-        "allowAny": true
+        "ts": "always",
+        "tsx": "always"
       }
     ],
-    "import/extensions": ["error", "never", { "tsx": "always" }]
+    "import/no-unresolved": "off"
   }
 }

@@ -8,12 +8,10 @@ import HeaderFC from "./Header.tsx";
  * @returns will get the data button's header
  */
 export default function ButtonFC({
-  header, handleClick = (e) => {
-    e.preventDefault();
-  },
+  header,
 }: HeaderInterface): React.JSX.Element {
   return (
-    <button className="ok" onSubmit={handleClick}>
+    <button className="ok" type="submit">
       <HeaderFC header={header} />
     </button>
   );

@@ -13,7 +13,6 @@ export default function InputFC({
   inputName,
   inputType,
   inputId = "0",
-  handleClick,
 }: Forms): React.JSX.Element {
   // const { header } = prop.forms;
   return (
@@ -24,7 +23,7 @@ export default function InputFC({
           {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
           <input name={inputName} defaultValue="" id={inputId}
             type={inputType}
-            onClick={handleClick as React.MouseEventHandler<HTMLButtonElement>} required />
+            required />
         </div>
       </label>
     </div>
