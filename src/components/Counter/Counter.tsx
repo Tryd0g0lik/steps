@@ -25,6 +25,7 @@ export default function CounterFC(): React.JSX.Element {
         />
 
         <div className="blockOk">
+          <h2>Отправить</h2>
           <ButtonFC header={"Ok"} />
         </div>
 
