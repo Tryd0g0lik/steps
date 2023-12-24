@@ -1,6 +1,7 @@
 import React from "react";
 import HeaderFC from "../Header.tsx";
 import { type Forms } from "../../header-interface.tsx";
+
 /**
  * The entry point is a intarfice's type "Forms"
   * @param header: It's a block title
@@ -21,8 +22,9 @@ export default function InputFC({
       <label htmlFor={inputId}>
         <div className="interiorBlock">
           {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
-
-          <input name={inputName} id={inputId} type={inputType} onClick={handleClick} required />
+          <input name={inputName} defaultValue="" id={inputId}
+            type={inputType}
+            onClick={handleClick as React.MouseEventHandler<HTMLButtonElement>} required />
         </div>
       </label>
     </div>

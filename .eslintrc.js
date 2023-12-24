@@ -51,6 +51,12 @@ module.exports = {
     "@stylistic/js/no-mixed-spaces-and-tabs": "error",
     "@stylistic/indent": ["error", 2],
     "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/restrict-template-expressions": [
+      "error",
+      {
+        "allowAny": true
+      }
+    ],
     "import/extensions": ["error", "never", { "tsx": "always" }]
   }
 }
