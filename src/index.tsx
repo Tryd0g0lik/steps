@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import AppFC from "./App.tsx";
+import AppFC from "./frontend/App.tsx";
 
 const root = document.getElementById("root");
 if ((root !== null) && (root !== undefined)) {

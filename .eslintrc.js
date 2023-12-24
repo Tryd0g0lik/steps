@@ -27,6 +27,9 @@ module.exports = {
   ],
   "overrides": [
   ],
+  "include": [
+    "src"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,

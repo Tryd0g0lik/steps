@@ -2,6 +2,13 @@
   "name": "ne-staps",
   "version": "0.1.02",
   "private": true,
+  "engines": {
+    "node": ">=18.17.1",
+    "yarn": ">=1.22.5"
+  },
+  "workspaces": [
+    "./src/backend"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",

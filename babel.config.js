@@ -30,5 +30,8 @@ module.exports = {
         ]
       ]
     }
-  }
+  },
+  "exclude": [
+    "src/backend"
+  ]
 };

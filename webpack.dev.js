@@ -11,7 +11,9 @@ module.exports = merge(common, {
     watchFiles: [
       'src/'
     ],
-
+    exclude: [
+      "src/backend"
+    ],
     compress: true,
     historyApiFallback: true,
     open: true,
