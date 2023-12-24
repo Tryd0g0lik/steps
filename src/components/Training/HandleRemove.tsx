@@ -1,7 +1,7 @@
 import React from "react";
-interface Index {
-  id: string;
-}
-export default function HandleRemoveFC({ id }: Index) {
-  return (<p>{id}</p>)
+// interface Index {
+//   id: string | number
+// }
+export default function HandleRemoveFC(id: string): React.JSX.Element {
+  return (<p>{id}</p>);
 }

@@ -1,12 +1,11 @@
 
-.*
+
 *.js
-./__tests__/__e2e__/*.js
-**/dist
+__tests__/__e2e__/*.js
+src/*.js
+dist
 
-node_modules
-
-*.jsx
+node_modules/
 
 archive
 .cache

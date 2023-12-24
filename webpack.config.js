@@ -1,16 +1,28 @@
-path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
+
+
 module.exports = {
   mode: 'none',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   target: 'web',
 
   module: {
     rules: [
       {
-        test: /\.([tj]sx?)$/,
-        use: 'babel-loader',
+        test: /\.(tsx|jsx|ts|js)$/,
+
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              configFile: path.resolve(__dirname, 'babel.config.js'),
+            }
+          }
+
+        ],
       },
       {
         test: /\.css$/,
@@ -33,6 +45,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new ESLintPlugin()
+    new ESLintPlugin({
+      files: path.resolve(__dirname, 'src/'),
+
+    })
   ],
 };
