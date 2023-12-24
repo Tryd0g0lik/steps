@@ -57,6 +57,8 @@ module.exports = {
         "tsx": "always"
       }
     ],
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "@typescript-eslint/strict-boolean-expressions": ["error", { allowNullableNumber: false }],
+
   }
 }

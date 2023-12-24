@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
+
 export default function CounterFC(): React.JSX.Element {
   const uniqueInputId = useId();
 
@@ -8,9 +9,9 @@ export default function CounterFC(): React.JSX.Element {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
-    const date = formData.get("date");
-    const distanc = formData.get("distanc");
-    console.log(date, distanc);
+    const date = formData.get("date") as string;
+    const distance = formData.get("distanc") as string;
+    console.log(date, distance);
   };
   return (
     <form className="form" onSubmit={handleInput as React.FormEventHandler<HTMLFormElement>} >
