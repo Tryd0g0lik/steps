@@ -4,7 +4,7 @@
     "rootDir": "../../",
     "noImplicitAny": true,
   "strictNullChecks": false,
-  "module": "commonjs",
+  "module": "CommonJS",
   "strictNullChecks": true
   },
   "strictNullChecks": false,
