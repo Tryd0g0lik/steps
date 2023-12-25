@@ -1,26 +1,22 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    // "allowSyntheticDefaultImports": true,
+    "rootDir": "../../",
     "noImplicitAny": true,
-    "module": "CommonJS",
-    // "target": "ES5",
-    // "sourceMap": true,
-    // "outDir": "../../../dist",
-    // "allowSyntheticDefaultImports": true,
-    // "esModuleInterop": true,
-    // "noImplicitAny": true,
-    // "skipLibCheck": true,
-    // "strict": true,
-    "strictNullChecks": false
+  "strictNullChecks": false,
+  "module": "commonjs",
+  "strictNullChecks": true
   },
+  "strictNullChecks": false,
   "exclude": [
     "node_modules",
     "directory",
-    "dist"
+    "dist",
+    "../../__tests__/__e2e__/blockRegistrater.test.js",
+    "../../archive",
+    ".eslintrc.js"
   ],
   "files": [
-    "./src/server/index.ts"
-    // "./src/wsServer/index.ts"
+    ".eslintrc.js"
   ]
 }

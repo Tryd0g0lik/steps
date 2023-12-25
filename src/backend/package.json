@@ -5,13 +5,16 @@
   "author": " Tryd0g0lik",
   "license": "MIT",
   "dependencies": {
+    "eslint-config-airbnb-typescript": "^17.1.0",
     "koa": "^2.14.2",
     "koa-better-router": "^2.1.1",
     "koa-body": "^6.0.1",
+    "koa-logger": "^3.2.1",
     "package.json": "^2.0.1",
     "ws": "^8.14.2"
   },
   "devDependencies": {
+    "@types/koa-logger": "^3.1.5",
     "@webpack-cli/generators": "^3.0.7",
     "bufferutil": "^4.0.7",
     "copy-webpack-plugin": "^11.0.0",

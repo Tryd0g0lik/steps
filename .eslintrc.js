@@ -3,7 +3,7 @@ module.exports = {
   "env": {
     "browser": true,
     "commonjs": true,
-    "es2021": true
+    "es6": true
   },
   "plugins": [
     "@stylistic",
@@ -25,11 +25,8 @@ module.exports = {
 
 
   ],
-  "overrides": [
-  ],
-  "include": [
-    "src"
-  ],
+
+
   "parser": "@typescript-eslint/parser",
   "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,
@@ -38,10 +35,10 @@ module.exports = {
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "ts": true
     }
   },
-
 
   "rules": {
     "react/prop-types": 0,
@@ -62,6 +59,22 @@ module.exports = {
     ],
     "import/no-unresolved": "off",
     "@typescript-eslint/strict-boolean-expressions": ["error", { allowNullableNumber: false }],
+    "@typescript-eslint/no-unsafe-argument": "error"
 
-  }
+  },
+  "overrides": [
+    {
+      "exclude": [
+        "node_modules",
+        "**/node_modules",
+        "**/dist"
+
+      ],
+      "files": [
+        "src/index.tsx",
+        "src/backend/.eslintrc.js"
+
+      ]
+    }
+  ],
 }

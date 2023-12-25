@@ -111,8 +111,9 @@
     "node_modules",
     "directory",
     "archive"
+  ],
+  "files": [
+    "src/index.tsx",
+    "src/backend/.eslintrc.js"
   ]
-  // "files": [
-  //   "src/index.tsx"
-  // ]
 }
