@@ -1,22 +1,22 @@
 {
-  "extends": "../../tsconfig.json",
+  // "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "../../",
     "noImplicitAny": true,
-  "strictNullChecks": false,
-  "module": "CommonJS",
-  "strictNullChecks": true
+    "sourceMap": false,
+    "outDir": "./src/result",
+    "module": "CommonJS",
+    "allowJs": false,
+    "strictNullChecks": true
   },
-  "strictNullChecks": false,
   "exclude": [
     "node_modules",
     "directory",
     "dist",
-    "../../__tests__/__e2e__/blockRegistrater.test.js",
-    "../../archive",
-    ".eslintrc.js"
+    "./src/result",
+    "../../archive"
   ],
-  "files": [
-    ".eslintrc.js"
-  ]
+  "include": [
+    "./src/server"
+  ],
+  // "files": []
 }

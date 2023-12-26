@@ -30,7 +30,8 @@ module.exports = {
   "parser": "@typescript-eslint/parser",
   "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,
-
+    "ecmaVersion": "ES2021",
+    "sourceType": "module",
     "tsconfigRootDir": __dirname,
     "ecmaVersion": "latest",
     "sourceType": "module",

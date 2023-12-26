@@ -1,6 +1,7 @@
 {
   "name": "ne-staps",
   "version": "0.1.02",
+  "mian": "./src/index.ts",
   "private": true,
   "engines": {
     "node": ">=18.17.1",
@@ -25,15 +26,17 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "serve dist",
+    "start": "node dist/server localhost 7070",
     "dev": "webpack serve --mode=development  --config ./webpack.config.js",
     "dev:test": "webpack serve --mode=development --port 9000 --config ./webpack.dev.js",
     "dev:jest": "jest --testPathPattern=./__tests__/ --runInBand --watchAll",
     "start:tailwindcss": "npx tailwindcss -i ./src/index.css -o ./src/styles/output.css --watch",
     "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development --node-env=development --config ./webpack.config.js && workspace steps-backend run build:dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint . "
+    "lint": "eslint . ",
+    "serve": "yarn workspace steps-backend run serve"
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",

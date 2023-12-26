@@ -20,9 +20,15 @@ module.exports = {
             options: {
               configFile: path.resolve(__dirname, 'babel.config.js'),
             }
-          }
+          },
+
 
         ],
+
+        exclude: [
+          path.resolve(__dirname, "./src/backend")
+        ]
+
       },
       {
         test: /\.css$/,

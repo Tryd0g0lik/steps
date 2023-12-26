@@ -9,3 +9,4 @@
 //   <AppFC />
 // )
 
+console.log('Good world')
