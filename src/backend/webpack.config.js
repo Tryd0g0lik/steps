@@ -5,17 +5,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'none',
   target: 'node18.18',
-  // entry: './src/index.ts',
   entry: path.resolve(__dirname, 'src/result/index.js'),
   output: {
     path: path.resolve(__dirname, '../../dist')
   },
-  // output: {
-  //   filename: 'server.js',// 'backend.[contenthash].js',
-  //   path: path.resolve(__dirname, '../../dist'),
-
-  //   // clean: true
-  // },
 
   plugins: [
     new CopyPlugin({
