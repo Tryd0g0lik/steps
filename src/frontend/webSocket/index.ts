@@ -20,11 +20,10 @@ export class WSocket {
 
     this.socket.addEventListener('open', async (e: Event) => {
       console.warn("[WebSocket]: Server was connected", this.socket.readyState);
-      const steps = this.heandlers;
-      const stepsStr = JSON.stringify({ ...steps });
-      // const entry = Object.create({ steps: stepsStr });
-      this.socket.send(stepsStr);
-    });
+			this.onSend
+
+		});
+
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
       this.onMessage(e);
@@ -65,16 +64,14 @@ export class WSocket {
     }
   }
 
-  // get onSend() {
-  //   const stepsStr = JSON.stringify(this.heandlers['open']);
-  //   console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
-  //   console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
-  //   let readyState = this.socket.readyState;
-  //   // if (readyState < 1 || readyState > 1) {
-  //   console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
-  //   // }
+	get onSend() {
+		const steps = this.heandlers;
+		const stepsStr = JSON.stringify({ ...steps });
+		this.socket.send(stepsStr);
 
-  //   console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
-  //   return this.socket.send(stepsStr)
-  // }
+		for (const elem in this.heandlers) {
+			this.heandlers[`${elem}`] = [];
+		}
+		return this.heandlers
+	}
 }
