@@ -16,9 +16,12 @@ export class WSocket {
   // }
   constructor(url: string) {
     console.warn("[WebSocket ]: url", url);
-    this.socket = new WebSocket(url);
+    this.socket = new WebSocket('ws://localhost:7070');
 
-    this.socket.addEventListener('open', async (e: Event) => { console.warn("[WebSocket]: Server was connected", this.socket.readyState) });
+    this.socket.addEventListener('open', async (e: Event) => {
+      console.warn("[WebSocket]: Server was connected", this.socket.readyState);
+      this.socket.onSend;
+    });
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
       this.onMessage(e);
@@ -63,18 +66,20 @@ export class WSocket {
       console.log("[WebSocked onSend]: The heandlers['open'] - this's defore it's a data saved");
       this.heandlers['open'].push(stepsJSON);
       console.log("[WebSocked onSend]: The heandlers['open'] Data has been saved ");
-      const stepsStr = JSON.stringify(this.heandlers['open']);
-      console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
-      console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
-      let readyState = this.socket.readyState;
-      if (readyState < 1 || readyState > 1) {
-        console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
-      } else {
-        this.socket.send(stepsStr)
-      }
 
-      console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
     }
   }
 
+  get onSend() {
+    const stepsStr = JSON.stringify(this.heandlers['open']);
+    console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
+    console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
+    let readyState = this.socket.readyState;
+    // if (readyState < 1 || readyState > 1) {
+    console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
+    // }
+
+    console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
+    return this.socket.send(stepsStr)
+  }
 }

@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . ",
-    "serve": "yarn workspace steps-backend run serve"
+    "serve": "yarn workspace steps-backend run tsc && yarn workspace steps-backend run start"
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",

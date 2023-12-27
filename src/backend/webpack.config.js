@@ -13,7 +13,8 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: './src/result', to: './server', }
+        { from: './src/result', to: './server', },
+        { from: './src/result/web-socket', to: './server/web-socket', }
       ],
     }),
   ],

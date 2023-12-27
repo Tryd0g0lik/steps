@@ -4,7 +4,8 @@ export default () => {
 
   let ws: any;
   console.log("[pageLoder WS] has been start");
-  if (!ws) {
+  if (!ws || (ws
+    && (ws.readyState < 1 || ws.readyState > 1))) {
     console.log("[pageLoder WS] has been ran");
     ws = new WSocket('ws://localhost:7070');
     console.log("[pageLoder WS] has been made");
