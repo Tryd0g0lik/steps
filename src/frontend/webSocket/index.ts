@@ -20,9 +20,10 @@ export class WSocket {
 
     this.socket.addEventListener('open', async (e: Event) => {
       console.warn("[WebSocket]: Server was connected", this.socket.readyState);
-      // this.socket.onSend;
-      const stepsStr = JSON.stringify(this.heandlers['open']);
-      this.socket.send(stepsStr)
+      const steps = this.heandlers;
+      const stepsStr = JSON.stringify({ ...steps });
+      // const entry = Object.create({ steps: stepsStr });
+      this.socket.send(stepsStr);
     });
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
@@ -35,7 +36,7 @@ export class WSocket {
     })
 
     this.heandlers = {
-      open: [],
+      open: ['старт'],
       close: [],
       inser: [],
       data: []
@@ -51,14 +52,6 @@ export class WSocket {
   onError(e: any) {
     console.log("[WebSocked onError]: has been break");
   };
-
-  // async onOpen() {
-
-  // }
-
-  // set steps(arrt: any) {
-  //   return
-  // }
 
   set onSend(prop: string) {
     console.log("[WebSocked onSend]: prop ", prop, `The type is a prop: ${typeof prop} `);
