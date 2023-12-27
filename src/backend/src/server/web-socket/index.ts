@@ -8,7 +8,7 @@ module.exports = (wss: any) => {
       console.log(`[WSS]: The message ${mess} `);
       ws.onclose = (e: any) => {
         const message = JSON.parse(mess);
-        console.log(message);
+        console.log(message.keys());
       };
     });
     console.warn(`This's sendtime `);

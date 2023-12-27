@@ -20,7 +20,9 @@ export class WSocket {
 
     this.socket.addEventListener('open', async (e: Event) => {
       console.warn("[WebSocket]: Server was connected", this.socket.readyState);
-      this.socket.onSend;
+      // this.socket.onSend;
+      const stepsStr = JSON.stringify(this.heandlers['open']);
+      this.socket.send(stepsStr)
     });
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
@@ -50,9 +52,9 @@ export class WSocket {
     console.log("[WebSocked onError]: has been break");
   };
 
-  async onOpen() {
+  // async onOpen() {
 
-  }
+  // }
 
   // set steps(arrt: any) {
   //   return
@@ -70,16 +72,16 @@ export class WSocket {
     }
   }
 
-  get onSend() {
-    const stepsStr = JSON.stringify(this.heandlers['open']);
-    console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
-    console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
-    let readyState = this.socket.readyState;
-    // if (readyState < 1 || readyState > 1) {
-    console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
-    // }
+  // get onSend() {
+  //   const stepsStr = JSON.stringify(this.heandlers['open']);
+  //   console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
+  //   console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
+  //   let readyState = this.socket.readyState;
+  //   // if (readyState < 1 || readyState > 1) {
+  //   console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
+  //   // }
 
-    console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
-    return this.socket.send(stepsStr)
-  }
+  //   console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
+  //   return this.socket.send(stepsStr)
+  // }
 }
