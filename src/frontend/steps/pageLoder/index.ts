@@ -1,14 +1,17 @@
 /* src\frontend\steps\pageLoder\index.ts */
-
+const { WSocket } = require("../../webSocket/index.ts");
 export default () => {
-  const { WSocked } = require("../../webSocket/index.ts");
+
   let ws: any;
+  console.log("[pageLoder WS] has been start");
   if (!ws) {
-    ws = new WSocked("wss://localhost:7070/")
+    console.log("[pageLoder WS] has been ran");
+    ws = new WSocket('ws://localhost:7070');
     console.log("[pageLoder WS] has been made");
   };
-
+  console.log("[pageLoder WS] has been JSON confert");
   let stepsStr = JSON.stringify({ steps: [] });
+  console.log("[pageLoder WS] after the JSON confer and before to send ");
   ws.onSend = stepsStr;
 
 } 

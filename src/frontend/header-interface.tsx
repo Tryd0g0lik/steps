@@ -1,4 +1,4 @@
-import React = require("react");
+
 
 /**
  * Intarface is name "HeadersInterfaces"

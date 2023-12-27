@@ -8,23 +8,25 @@ type HeandlersSteps = {
   data: any[]
 }
 
-export default class WSocket {
-  heandlers: HeandlersSteps;
-  socket: WebSocket;
-  addEventListener(arg0: string, arg1: (e: Event) => void) {
-    throw new Error("Method not implemented.");
-  }
+export class WSocket {
+  heandlers: any;
+  socket: any;
+  // addEventListener(arg0: string, arg1: (e: Event) => void) {
+  //   throw new Error("Method not implemented.");
+  // }
   constructor(url: string) {
+    console.warn("[WebSocket ]: url", url);
     this.socket = new WebSocket(url);
-    this.socket.addEventListener('open', async (e: Event) => { console.log("[WebSocket EventOpen]: an event open ") });
+
+    this.socket.addEventListener('open', async (e: Event) => { console.warn("[WebSocket]: Server was connected", this.socket.readyState) });
     this.socket.addEventListener('message', (e: Event) => {
-      console.log("[WebSocket EventListenerMessage]: an event open ");
+      console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
       this.onMessage(e);
     });
     this.socket.addEventListener('close', (e: any) => {
-      if (e.wasClean) console.log('[WebSocket EventListenerClose]: connection closed clean!')
-      else console.log('[WebSocket]: connection closed aborted!');
-      this.onError(e);
+      if (e.wasClean) console.warn('[WebSocket EventListenerClose]:', this.socket.readyState)
+      else this.onError(e);
+
     })
 
     this.heandlers = {
@@ -54,11 +56,24 @@ export default class WSocket {
   // }
 
   set onSend(prop: string) {
+    console.log("[WebSocked onSend]: prop ", prop, `The type is a prop: ${typeof prop} `);
     const stepsJSON = JSON.parse(prop);
+    console.log("[WebSocked onSend]: stepsJSON ", stepsJSON, `stepsJSON['steps'].LENGTH: ${stepsJSON['steps'].length}`);
     if (stepsJSON['steps'].length === 0) {
+      console.log("[WebSocked onSend]: The heandlers['open'] - this's defore it's a data saved");
       this.heandlers['open'].push(stepsJSON);
+      console.log("[WebSocked onSend]: The heandlers['open'] Data has been saved ");
       const stepsStr = JSON.stringify(this.heandlers['open']);
-      this.socket.send(stepsStr)
+      console.log("[WebSocked onSend]: heandlers['open'] after convertation in a type string. Before a send stepsStr :", stepsStr);
+      console.log("[WebSocked onSend]: readyState :", this.socket.readyState);
+      let readyState = this.socket.readyState;
+      if (readyState < 1 || readyState > 1) {
+        console.warn("[WebSocked onSend]: readyState :", readyState, "It's not equal to 1. Could't send");
+      } else {
+        this.socket.send(stepsStr)
+      }
+
+      console.log("[WebSocked onSend]: After a sent stepsStr :", stepsStr);
     }
   }
 

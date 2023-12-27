@@ -1,12 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-
+const webpack = require('webpack');
 
 
 module.exports = {
+  // devtool: 'evel-'
   mode: 'none',
-  entry: './src/index.tsx',
+  entry: {
+
+    main: './src/index.tsx',
+    home: './src/index.ts'
+  },
+
   target: 'web',
 
   module: {
@@ -50,6 +56,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map.[query]',
+      exclude: path.resolve(__dirname, 'src/frontend'),
     }),
     new ESLintPlugin({
       files: path.resolve(__dirname, 'src/'),

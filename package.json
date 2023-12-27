@@ -1,7 +1,7 @@
 {
   "name": "ne-staps",
-  "version": "0.1.02",
-  "mian": "./src/index.ts",
+  "version": "0.2.1",
+  "main": "./src/index.ts",
   "private": true,
   "engines": {
     "node": ">=18.17.1",
@@ -26,13 +26,12 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    
-    "dev": "webpack serve --mode=development  --config ./webpack.config.js",
+    "dev": "webpack serve --mode=development  --config ./webpack.dev.js",
     "dev:test": "webpack serve --mode=development --port 9000 --config ./webpack.dev.js",
     "dev:jest": "jest --testPathPattern=./__tests__/ --runInBand --watchAll",
     "start:tailwindcss": "npx tailwindcss -i ./src/index.css -o ./src/styles/output.css --watch",
     "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development --node-env=development --config ./webpack.config.js && workspace steps-backend run build:dev",
+    "build:dev": "webpack --mode=development --node-env=development --config ./webpack.config.js && yarn workspace steps-backend run build:dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . ",
