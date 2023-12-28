@@ -1,8 +1,8 @@
 
-const dbSteps = require('../../db/steps.json');
+const dbSteps = require('../../db/steps.json'); /* template there is "{"date-4645bd71-8bd2-4075-a9b2-27dbfaebb7c6":{"date":"0333-03-31"},"distance-257e314f-9ac4-49c9-8ca7-1d228c2aa1a0":{"distance":"3"}, ....}" */
 const uuidv4 = require('uuid');
 const setKeys = new Set();
-
+let variableSend = '';
 
 const stepsGetId = ():string => {
   const id = uuidv4.v4();
@@ -20,62 +20,96 @@ const stepsGetId = ():string => {
   return id;
   
 }
+/**
+ * Inside this function there is a means to verifying of the data unique.
+ * @param str : this's a transaction key
+ * @param arr : this array data is from event websocket's message
+ */
+const inserter = (str: string, arr: Record<string, any[]>): void => {
+  console.log(`[WS inserter INSERT]: arr[str] ${arr[str]}`);
+  if (arr[str].length > 0) {
+    if (str === 'open') {
+      
+      /* This's a page loader */      
+      variableSend = { ...dbSteps }
+      console.log(`[WS inserter OPEN]: send: ${variableSend}`);
+    }
+    else if (str === 'insert') {
+      const filterArrKey = <string[]>[];
 
+      /*
+       *  Getting data unique 
+      */
+      const filterArr = <[Record<string, any[]>]>arr[str].filter((elem: any) => {
+
+        const arrayVal = Object.values(elem);
+        const arrayKey = Object.keys(elem);
+        console.log(`[WS inserter INSERT]: arrayVal: ${(arrayVal)}`);
+        for (let i = 0; i < arrayVal.length; i++) {
+
+          console.log(`[WS inserter INSERT]: arrayVal[${i}]: ${(arrayVal[i])}`);
+          const v = <string>arrayVal[i];
+          if (JSON.stringify(dbSteps).indexOf(v) === -1) {
+            filterArrKey.push(arrayKey[i]); /* This's filter's keys */
+            return elem 
+          };
+        }
+       
+        // console.log(`[WS insert]: Object.values ELEM: ${(Object.values(elem))}`)
+      }    
+      );
+     
+      for (let i = 0; i < filterArrKey.length; i++){
+       
+        dbSteps[`${filterArrKey[i]}-${stepsGetId()}`] = filterArr[i];
+      };
+      variableSend = { ...dbSteps };
+      console.log(`[WS inserter INSERT]: send KEY: ${Object.keys(variableSend)} VALUE ${Object.values(variableSend)}`)
+
+    }
+  };
+}
 
 module.exports = (wss: any, WS:any) => {
   console.log(`[WSS]: `);
   return wss.on('connection', (ws: any, req: any) => {
     ws.on('error', () => console.error('WS ERROR'));
     ws.on('message', (mess: any) => {
-      let send = '';
+      
       const url = req.url.slice(0,);
       const messJson = JSON.parse(mess);
       console.log(`[WS message]: MESS: ${mess} `);
       console.log(`[WS message]: stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
-      const ind = stepsGetId();
-      console.log(`[WS message]: Get IND: ${ind}`);
-    
-      console.log(`[WS message]: messJson[k].KEYs: ${Object.keys(messJson)}`);
+      
       for (const k in messJson) {
         
         // console.log(`[WS message]: messJson[k].length: ${messJson[k].length} Volume k: ${k}`);
         // console.log(` messJson[k]: ${JSON.stringify(messJson[k])}`);
-        (messJson[k].length > 0) ? (
-          (k === 'open') ? (
-            /* This's a page loader */
-            send = { ...dbSteps }
-          ) : (
-              (k === 'insert') ? (
-                messJson[k].filter((elem: any) => {
-                  const arrayVal = Object.values(elem);
-                  for (let i = 0; i < arrayVal.length; i++){
-                    console.log(`arrayVal[${i}]: ${(arrayVal[i])}`);  
-                    // if (JSON.stringify(dbSteps).indexOf(arrayVal[i]) >= 0) {return }
-                  }
-                  console.log(`Object.values ELEM: ${(Object.values(elem))}`)
-                }),
-              dbSteps[`${ind}`] = messJson[k]
-            ) : dbSteps
-          )
-        ) : null;
+        inserter(k, messJson);
         
       }
-      const sendSTR = JSON.stringify(send);
-      console.log(`[WS message]: sendSTR: ${send}`);
-      send = '';
+      const sendSTR = JSON.stringify(variableSend).slice(0);
+      console.log(`[WS message]: sendSTR: ${sendSTR}`);
+    
       /* This's a mailer for posts of the db */
       wss.clients.forEach((client: any) => {
-        if (client !== ws) {
+        console.log(`[WS message]: client.send BEFORE: ${"Sent"} ${client === ws}`)
+        if (client === ws && client.readyState === WS.OPEN ) {
           client.send(sendSTR);
-          console.log(`[WS message]: client.send: ${client}`)
+          console.log(`[WS message]: client.send: ${"Sent"}`)
         }
-      });
+      }
+      );
+
+      variableSend = '';
     });
     ws.onclose = (e: any) => {
       console.log(`CLOSE neeed`);
     };
     console.warn(`This's sendtime `);
+    console.log('----------------');
   });
+  
 
 }
 

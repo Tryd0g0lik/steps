@@ -1,13 +1,5 @@
 /* src\frontend\webSocket\index.ts */
 
-
-type HeandlersSteps = {
-  open: any[],
-  close: any[],
-  insert: any[],
-  data: any[]
-}
-
 export class WSocket {
   heandlers: any;
   socket: any;
@@ -27,7 +19,7 @@ export class WSocket {
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
       console.warn("[WebSocket Got message]: ", e);
-      this.onMessage(e);
+      this.onMessage = e;
     });
     this.socket.addEventListener('close', (e: any) => {
       if (e.wasClean) console.warn('[WebSocket EventListenerClose]:', this.socket.readyState)
@@ -38,14 +30,20 @@ export class WSocket {
     this.heandlers = {
       open: [],
       close: [],
-      insert: [{ 'старт': 'dsda', 'старт02': 'dsdadsaSDASDAS' }],
+      insert: [],
       data: []
     }
   };
 
-  onMessage(e: any) {
+  set onMessage(e: Record<string, any>) {
     // if (e.request.method.includes(String(['GET', 'POST', 'INSERT']))) {
+
+
+    // console.log(`Получили данные сервера`);
+    this.heandlers['data'].push(JSON.parse(e['data']));
+    console.log(`[WebSocked onMessage]: ${JSON.stringify(this.heandlers)}`);
     console.log(`Получили данные сервера`);
+    this.socket.close();
     // }
   };
 
@@ -54,14 +52,14 @@ export class WSocket {
   };
 
   set onSend(prop: string) {
-    const transactionKeys = <string[]>['open', 'close', 'inser', 'data']
+    const transactionKeys = <string[]>['open', 'close', 'insert', 'data']
     console.log("[WebSocked onSend]: prop ", prop, `The type is a prop: ${typeof prop} `);
     const stepsJSON = JSON.parse(prop);
     // console.log("[WebSocked onSend]: stepsJSON ", stepsJSON, `stepsJSON['steps'].LENGTH: ${stepsJSON['steps'].length}`);
     for (const k of transactionKeys) {
       if (k in stepsJSON) (
-        (this.heandlers)[k] = stepsJSON[k]);
-      console.log(`this.heandlers[${k}] AFTER: ${JSON.stringify(this.heandlers)}`);
+        (this.heandlers)[k] = stepsJSON[k],
+        console.log(`this.heandlers[${k}] AFTER: ${JSON.stringify(this.heandlers)}`));
     }
     console.log("[WebSocked onSend]: The heandlers['open'] Data has been saved ", JSON.stringify(this.heandlers));
   }
