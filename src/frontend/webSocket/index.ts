@@ -38,7 +38,7 @@ export class WSocket {
     this.heandlers = {
       open: [],
       close: [],
-      insert: [{ 'старт': 'dsda' }],
+      insert: [{ 'старт': 'dsda', 'старт02': 'dsdadsaSDASDAS' }],
       data: []
     }
   };
