@@ -10,12 +10,11 @@ export default function CounterFC(): React.JSX.Element {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
-    const date = formData.get("date") as string;
-    const distance = formData.get("distanc") as string;
-    console.log(date, distance);
-    pageLoder({ 'insert': [{ 'date': date }, { 'distance': distance }] });
+    let date = formData.get("date") as string;
+    let distance = formData.get("distanc") as string;
+    pageLoder({ 'insert': [{ 'date': date.slice(0) }, { 'distance': distance.slice(0) }] });
+    event.currentTarget.reset();
 
-    console.log(`event SIBMIMT: ${Object.keys(event.currentTarget)}`);
   };
   return (
     <form className="form" onSubmit={handleInput as React.FormEventHandler<HTMLFormElement>} >
