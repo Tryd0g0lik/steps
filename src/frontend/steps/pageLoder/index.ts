@@ -11,7 +11,7 @@ export default () => {
     console.log("[pageLoder WS] has been made");
   };
   console.log("[pageLoder WS] has been JSON confert");
-  let stepsStr = JSON.stringify({ open: { steps: [] } });
+  let stepsStr = JSON.stringify({ open: [{ steps: [] }] });
   console.log("[pageLoder WS] after the JSON confer and before to send ", stepsStr);
   ws.onSend = stepsStr;
 

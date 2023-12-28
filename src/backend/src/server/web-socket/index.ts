@@ -30,20 +30,24 @@ module.exports = (wss: any, WS:any) => {
       let send = '';
       const url = req.url.slice(0,);
       const messJson = JSON.parse(mess);
-      console.log(`[WSS]: MESS: ${mess} `);
-      console.log(`stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
+      console.log(`[WS message]: MESS: ${mess} `);
+      console.log(`[WS message]: stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
       const ind = stepsGetId();
-      console.log(`Get IND: ${ind}`);
+      console.log(`[WS message]: Get IND: ${ind}`);
     
-      
+      console.log(`[WS message]: messJson[k].KEYs: ${Object.keys(messJson)}`);
+      console.log(`[WS message]: messJson[k].open: ${messJson.open}`);
+      console.log(`[WS message]: messJson[k].open: ${messJson.open}`);
+      console.log(`[WS message]: messJson[k].open.length: ${messJson.open.length}`);
       for (const k in messJson) {
-        // console.log(`messJson[k].length: ${messJson[k].length}`);
+        
+        console.log(`[WS message]: messJson[k].length: ${messJson[k].length} Volume k: ${k}`);
         // console.log(` messJson[k]: ${JSON.stringify(messJson[k])}`);
         (messJson[k].length > 0) ? (
-          (k === 'open') ? ( 
+          (k === 'open') ? (
             /* This's a page loader */
-            send = { ...dbSteps }
-            
+            send = { ...dbSteps },
+            console.log(`[WS message]: dbSteps OPEN: ${dbSteps}`)
           ) : (
             (k === 'insert') ? (
               dbSteps[`${k}-${ind}`] = messJson[k]
@@ -52,13 +56,14 @@ module.exports = (wss: any, WS:any) => {
         ) : null;
         
       }
-      const sendSTR = JSON.stringify(send).slice(0);
+      const sendSTR = JSON.stringify(send);
+      console.log(`[WS message]: sendSTR: ${send}`);
       send = '';
       /* This's a mailer for posts of the db */
       wss.clients.forEach( (client: any)=> {  
-        if (client !== ws && client.readyState === WS.open) {
+        if (client !== ws) {
           client.send(sendSTR);
-          console.log(`client.send: ${client}`)
+          console.log(`[WS message]: client.send: ${client}`)
         }
       })
       // const k_ = Object.keys(dbSteps);

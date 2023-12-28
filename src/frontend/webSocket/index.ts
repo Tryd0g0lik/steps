@@ -4,7 +4,7 @@
 type HeandlersSteps = {
   open: any[],
   close: any[],
-  inser: any[],
+  insert: any[],
   data: any[]
 }
 
@@ -26,6 +26,7 @@ export class WSocket {
 
     this.socket.addEventListener('message', (e: Event) => {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
+      console.warn("[WebSocket Got message]: ", e);
       this.onMessage(e);
     });
     this.socket.addEventListener('close', (e: any) => {
@@ -37,15 +38,15 @@ export class WSocket {
     this.heandlers = {
       open: [],
       close: [],
-      inser: [{ 'старт': 'dsda' }],
+      insert: [{ 'старт': 'dsda' }],
       data: []
     }
   };
 
   onMessage(e: any) {
-    if (e.request.method.includes(String(['GET', 'POST', 'INSERT']))) {
-      console.log("[WebSocked onMessage]: has been started");
-    }
+    // if (e.request.method.includes(String(['GET', 'POST', 'INSERT']))) {
+    console.log(`Получили данные сервера`);
+    // }
   };
 
   onError(e: any) {
