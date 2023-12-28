@@ -69,7 +69,7 @@ app.use(function (ctx) { return __awaiter(_this, void 0, void 0, function () {
         return [2 /*return*/];
     });
 }); });
-WSServerBody(wss);
+WSServerBody(wss, WS);
 console.log('[HOST]: ', process.env.HOST);
 console.log('[PORT]: process.env.PORT:', process.env.PORT + '|| PORT' + PORT);
 server.listen(PORT, function () {

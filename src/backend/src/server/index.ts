@@ -34,7 +34,7 @@ app.use(async (ctx: any) => {
   ctx.body = `Request Body: ${JSON.stringify(ctx.request.method)} and  PORT: ${PORT}`;
   console.log('ctx.status', ctx.status);
 })
-WSServerBody(wss);
+WSServerBody(wss, WS);
 console.log('[HOST]: ', process.env.HOST);
 console.log('[PORT]: process.env.PORT:', process.env.PORT + '|| PORT' + PORT);
 server.listen(PORT, () => {

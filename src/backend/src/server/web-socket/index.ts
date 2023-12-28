@@ -22,7 +22,7 @@ const stepsGetId = ():string => {
 }
 
 
-module.exports = (wss: any) => {
+module.exports = (wss: any, WS:any) => {
   console.log(`[WSS]: `);
   return wss.on('connection', (ws: any, req: any) => {
     ws.on('error', () => console.error('WS ERROR'));
@@ -52,6 +52,15 @@ module.exports = (wss: any) => {
         ) : null;
         
       }
+      const sendSTR = JSON.stringify(send).slice(0);
+      send = '';
+      /* This's a mailer for posts of the db */
+      wss.clients.forEach( (client: any)=> {  
+        if (client !== ws && client.readyState === WS.open) {
+          client.send(sendSTR);
+          console.log(`client.send: ${client}`)
+        }
+      })
       // const k_ = Object.keys(dbSteps);
       // console.log(`dbSteps.keys: ${k_}`);
       // console.log(`Object.values AFTERs: ${Object.values(dbSteps)}`)

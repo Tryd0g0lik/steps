@@ -35,9 +35,9 @@ export class WSocket {
     })
 
     this.heandlers = {
-      open: [{ 'старт': 'dsda' }],
+      open: [],
       close: [],
-      inser: [],
+      inser: [{ 'старт': 'dsda' }],
       data: []
     }
   };
@@ -56,11 +56,13 @@ export class WSocket {
     const transactionKeys = <string[]>['open', 'close', 'inser', 'data']
     console.log("[WebSocked onSend]: prop ", prop, `The type is a prop: ${typeof prop} `);
     const stepsJSON = JSON.parse(prop);
-    console.log("[WebSocked onSend]: stepsJSON ", stepsJSON, `stepsJSON['steps'].LENGTH: ${stepsJSON['steps'].length}`);
-    for (const k in transactionKeys) {
-      if (k in stepsJSON) this.heandlers[k].push(stepsJSON);
+    // console.log("[WebSocked onSend]: stepsJSON ", stepsJSON, `stepsJSON['steps'].LENGTH: ${stepsJSON['steps'].length}`);
+    for (const k of transactionKeys) {
+      if (k in stepsJSON) (
+        (this.heandlers)[k] = stepsJSON[k]);
+      console.log(`this.heandlers[${k}] AFTER: ${JSON.stringify(this.heandlers)}`);
     }
-    console.log("[WebSocked onSend]: The heandlers['open'] Data has been saved ");
+    console.log("[WebSocked onSend]: The heandlers['open'] Data has been saved ", JSON.stringify(this.heandlers));
   }
 
 	get onSend() {
