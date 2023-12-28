@@ -1,0 +1,21 @@
+{
+  // "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "outDir": "./src/result",
+    "module": "CommonJS",
+    "allowJs": false,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules",
+    "directory",
+    "dist",
+    "./src/result",
+    "../../archive"
+  ],
+  "include": [
+    "./src/server"
+  ]
+}

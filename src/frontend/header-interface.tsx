@@ -1,16 +1,16 @@
-import React = require("react");
+
 
 /**
  * Intarface is name "HeadersInterfaces"
   @param header:string;
 */
-type ButtonClickFunction = (item: React.MouseEvent<HTMLButtonElement>) => void;
+// type ButtonClickFunction = (event: React.MouseEventHandler<HTMLButtonElement>) => void;
 
-type InputClickFunction = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void; // event: React.MouseEvent<HTMLInputElement>
+// type InputClickFunction = (event: React.MouseEventHandler<HTMLButtonElement>) => void; // event: React.MouseEvent<HTMLInputElement>
 
 export interface HeadersInterfaces {
   header: string
-  handleClick?: ButtonClickFunction
+  handleClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 /**
  * Intarface is name "Forms"
@@ -18,14 +18,13 @@ export interface HeadersInterfaces {
  * @param inputName: string;
  * @param inputType: string;
  * @param inputId?: string;
- * @param handleClick: InputClickFunction "{(item: React.ChangeEventHandler<HTMLInputElement>): void;}}"";
+ * @param handleClick: InputClickFunction "{(item: React.ChangeEvent<HTMLInputElement>): void;}}"";
  */
 export interface Forms {
   header: string
   inputName: string
   inputType: string
   inputId?: string
-  handleClick?: InputClickFunction
 }
 
 // https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events

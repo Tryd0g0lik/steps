@@ -4,6 +4,7 @@ import TrainFC from "./components/Training/Train.tsx";
 import "./App.css";
 
 export default function AppFC(): React.JSX.Element {
+
   return (
     <>
       <CounterFC />

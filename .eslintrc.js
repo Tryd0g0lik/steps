@@ -1,10 +1,9 @@
 module.exports = {
   "root": true,
-  // "extends": "./tsconfig.json", // https://typescript-eslint.io/linting/typed-linting/monorepos
   "env": {
     "browser": true,
     "commonjs": true,
-    "es2021": true
+    "es6": true
   },
   "plugins": [
     "@stylistic",
@@ -23,34 +22,60 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "plugin:@typescript-eslint/recommended-type-checked", // https://typescript-eslint.io/linting/configs#recommended-type-checked
     "plugin:@typescript-eslint/strict",  // https://typescript-eslint.io/linting/configs#strict
-    "plugin:@typescript-eslint/stylistic"  // https://typescript-eslint.io/linting/configs#stylistic
+
 
   ],
-  "overrides": [
-  ],
+
+
   "parser": "@typescript-eslint/parser",
   "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,
-    // "project": ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
+    "ecmaVersion": "ES2021",
+    "sourceType": "module",
     "tsconfigRootDir": __dirname,
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "ts": true
     }
   },
 
-  // "include": [
-  //   "src"
-  // ],
-
   "rules": {
+    "react/prop-types": 0,
     "quotes": "off",
     '@stylistic/js/indent': ['error', 2],
     "@typescript-eslint/quotes": ["error", "double"],
     "@stylistic/js/no-mixed-spaces-and-tabs": "error",
     "@stylistic/indent": ["error", 2],
     "@typescript-eslint/no-non-null-assertion": "error",
-    "import/extensions": ["error", "never", { "tsx": "always" }]
-  }
+
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "always",
+        "tsx": "always"
+      }
+    ],
+    "import/no-unresolved": "off",
+    "@typescript-eslint/strict-boolean-expressions": ["error", { allowNullableNumber: false }],
+    "@typescript-eslint/no-unsafe-argument": "error"
+
+  },
+  "overrides": [
+    {
+      "exclude": [
+        "node_modules",
+        "**/node_modules",
+        "**/dist"
+
+      ],
+      "files": [
+        "src/index.tsx",
+        "src/backend/.eslintrc.js"
+
+      ]
+    }
+  ],
 }

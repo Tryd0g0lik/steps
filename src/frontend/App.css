@@ -8,6 +8,7 @@
   border: 1px solid black;
   width: 100vw;
   height: 30vh;
+  min-height: 120px;
   display: flex; 
   flex-direction: column;
   justify-content: flex-start; 
@@ -21,8 +22,9 @@
 }
 .block, .blockOk  {
   width: 20vw;
-  height: 15vh;
+  height: 16vh;
   margin: 1em;
+  margin-top: 0;
   padding: 0;
   display: flex; 
   justify-content: flex-start; 
@@ -34,18 +36,21 @@
   border-radius: 1em;
   width: 20vw;
   height: 7vh;  
+  min-height: 25px;
+    max-height: 35px;
   display: flex; 
   justify-content: center;
 }
 
 .blockOk {
-  margin-top: 1.5em;
+  margin-top: 0;
   align-items: center;
 }
 
-.ok {
+label .ok {
   margin-top: 2.5em;
   width: 15vw;
+  min-height: 30px;
   display: flex; 
   justify-content: center; 
 }
