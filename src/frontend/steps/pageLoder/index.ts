@@ -15,6 +15,25 @@ module.exports = (item: Record<string, object[]>) => {
   console.log("[pageLoder WS] after the JSON confer and before to send ", stepsStr);
   ws.onSend = stepsStr;
 
+	// ws.heandlers
+
   //
+
+	const dataGet = (data: Array<Record<string, any>>): any => {
+		if (data.length === 0) {
+			return setTimeout(() => {
+
+				return dataGet(ws.heandlers['data']);
+			}, 1500);
+		} else {
+			data.forEach((item: Record<string, Record<string, string>>) => {
+				// console.log(`[dataGet]: ${JSON.stringify(item)}`);
+
+			})
+
+			// return data
+		}
+	}
+	dataGet(ws.heandlers['data']);
 } 
 
