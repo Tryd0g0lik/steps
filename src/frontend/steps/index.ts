@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function dataLStoorageGet(fun: () => (HTMLCollectionOf<HTMLLIElement> | null), timeout: number) { //FunctionStringCallback
-  let html = fun();
+  let htmlLisRecords = fun();
 
   let result: (string | {} | Record<string, Record<string, string>>) = '';
   const resp = publisher.dataGetForPublish;
