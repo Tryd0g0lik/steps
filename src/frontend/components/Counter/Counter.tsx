@@ -12,7 +12,7 @@ export default function CounterFC(): React.JSX.Element {
     const formData = new FormData(event.target as HTMLFormElement);
     let date = formData.get("date") as string;
     let distance = formData.get("distanc") as string;
-    pageLoder({ 'insert': [{ 'date': date.slice(0) }, { 'distance': distance.slice(0) }] });
+    pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); // { 'date': date.slice(0) }, { 'distance': distance.slice(0) }
     event.currentTarget.reset();
 
   };

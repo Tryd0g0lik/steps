@@ -1,7 +1,7 @@
 /* src\frontend\steps\pageLoder\index.ts */
 const { WSocket } = require("../../webSocket/index.ts");
 
-module.exports = (item: Record<string, object[]>) => {
+module.exports = (item: Record<string, Array<Record<string, string>>>) => {// object[]
 
   let ws: any;
   console.log("[pageLoder WS] has been start");
