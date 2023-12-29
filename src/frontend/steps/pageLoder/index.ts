@@ -1,5 +1,6 @@
 /* src\frontend\steps\pageLoder\index.ts */
 const { WSocket } = require("../../webSocket/index.ts");
+
 module.exports = (item: Record<string, object[]>) => {
 
   let ws: any;
@@ -14,10 +15,6 @@ module.exports = (item: Record<string, object[]>) => {
   let stepsStr = JSON.stringify(item);
   console.log("[pageLoder WS] after the JSON confer and before to send ", stepsStr);
   ws.onSend = stepsStr;
-
-	// ws.heandlers
-
-  //
 
 	const dataGet = (data: Array<Record<string, any>>): any => {
 		if (data.length === 0) {

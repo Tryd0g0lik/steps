@@ -36,11 +36,11 @@ export class WSocket {
   };
 
   set onMessage(e: Record<string, any>) {
-    // if (e.request.method.includes(String(['GET', 'POST', 'INSERT']))) {
-
-
     // console.log(`Получили данные сервера`);
-    this.heandlers['data'].push(JSON.parse(e['data']));
+    // this.heandlers['data'].push(JSON.parse(e['data']));
+    console.warn("[WebSocked onMessage]: Save the 'heandlersData' to LocalStorage BEFORE: ", e['data']);
+    // localStorage.setItem('heandlersData', heandlersData);
+    localStorage.setItem('heandlersData', e['data']);
     console.log(`[WebSocked onMessage]: ${JSON.stringify(this.heandlers)}`);
     console.log(`Получили данные сервера`);
     this.socket.close();
