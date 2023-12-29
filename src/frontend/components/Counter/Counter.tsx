@@ -23,7 +23,7 @@ export default function CounterFC(): React.JSX.Element {
           inputName={"date"} />
 
         <InputFC inputId={uniqueInputId + "distance"}
-          header={"Пройдено км"}
+          header={"Пройдено км."}
           inputType={"number"}
           inputName={"distanc"}
         />
