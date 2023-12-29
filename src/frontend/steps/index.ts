@@ -1,41 +1,30 @@
 
 const pageLoder = require("./pageLoder/index.ts");
-const Pulisher = require("./piblisher-data/index.ts");
-const publisher = new Pulisher()
-let timeout: number = 1200;
+// const Pulisher = require("./piblisher-data/index.ts");
+// const publisher = new Pulisher()
+// let timeout: number = 1200;
 
 document.addEventListener('DOMContentLoaded', () => {
 
   if (navigator && navigator.onLine) {
     pageLoder({ open: [{ steps: [] }] });
   }
-  dataLStoorageGet(htmlScaleDataGet, timeout);
+  // dataLStoorageGet(timeout);
 
 });
 
-async function dataLStoorageGet(fun: () => (HTMLCollectionOf<HTMLLIElement> | null), timeout: number) { //FunctionStringCallback
-  let htmlLisRecords = fun();
+// module.exports = async function dataLStoorageGet(timeout: number) { //FunctionStringCallback
 
-  let result: (string | {} | Record<string, Record<string, string>>) = '';
-  const resp = publisher.dataGetForPublish;
-  console.log(`[dataLStoorageGet]: publisher.publish: ${resp}`);
 
-  result = resp === false ? (
-    setTimeout(() => {
-      dataLStoorageGet(fun, timeout);
-      console.log(`[dataLStoorageGet]: setTimeout`)
-    }, timeout),
-    {}
-  ) : (
-    resp
-  );
+//   let result: (string | {} | Record<string, Record<string, string>>) = '';
+//   const resp = publisher.dataGetForPublish;
+//   console.log(`[dataLStoorageGet]: publisher.publish: ${resp}`);
 
-  console.log('[dataLStoorageGet]: ', result)
-}
-
-function htmlScaleDataGet(): any { //(HTMLUListElement | undefined | null)
-  console.log('[htmlScaleDataGet]: htnl BEFORE')
-  const html = <NodeListOf<HTMLLIElement> | null>document.querySelectorAll(".contentBlock ul.content li");
-  console.log(`[htmlScaleDataGet]: htnl AFTER: ${html}`)
-  return html;
-}
+//   result = resp === false ? (
+//     {}
+//   ) : (
+//       resp
+//   );
+//   // console.log('[dataLStoorageGet]: HTML', htmlLisRecords);
+//   console.log('[dataLStoorageGet]: ', result)
+// }
