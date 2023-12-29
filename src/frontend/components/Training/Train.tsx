@@ -1,12 +1,13 @@
 import React from "react";
 import HandleRemoveFC from "./HandleRemove.tsx";
+
 // import ButtonFC from "../Buttons.tsx";
 
 export default function TrainFC(): React.JSX.Element {
   const edit = "🖉";
   const delet = "✗";
   const trainigs: [{ id: string | number, date: string, distanc: string }] = [
-    { id: "0", date: "0", distanc: "striing" },
+    { id: "0", date: "0", distanc: "12" },
   ];
   return (
     <div className="feature">
