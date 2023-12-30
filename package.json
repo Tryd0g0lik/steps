@@ -1,12 +1,13 @@
 {
   "name": "ne-staps",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "./src/index.ts",
   "private": true,
   "engines": {
     "node": ">=18.17.1",
     "yarn": ">=1.22.5"
   },
+  "description": "There is EDIT function will be add",
   "workspaces": [
     "./src/backend"
   ],

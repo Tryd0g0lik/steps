@@ -6,7 +6,7 @@ import "./frontend/steps/index.ts";
 const root = document.getElementById("root");
 if ((root !== null) && (root !== undefined)) {
   createRoot(root).render(
-    <AppFC />,
+    <AppFC />
   );
 }
 

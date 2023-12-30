@@ -1,6 +1,6 @@
-import React from "react";
-
-
+import React, { useId } from "react";
+// import InputFC from "../Counter/Inputs.tsx";
+// const uniqueRecordId = useId();
 
 export default function ListRecords({ obj }: any): any {
   const o = JSON.parse(obj);
@@ -11,7 +11,6 @@ export default function ListRecords({ obj }: any): any {
   return (
     objKey.map((keyRecord: string) => (
       < ul className="content" key={keyRecord} >
-
         <li>{o[keyRecord]['date']}</li>
         <li>{o[keyRecord]['distance']}</li>
         <li>
