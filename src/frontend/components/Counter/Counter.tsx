@@ -1,12 +1,14 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
 const pageLoder = require("../../steps/pageLoder/index.ts");
+import TrainFC from "../Training/Train.tsx";
 
 export default function CounterFC(): React.JSX.Element {
   const uniqueInputId = useId();
+  const { } = useState()
 
-  const handleInput = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handlePress = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
@@ -17,7 +19,8 @@ export default function CounterFC(): React.JSX.Element {
 
   };
   return (
-    <form className="form" onSubmit={handleInput as React.FormEventHandler<HTMLFormElement>} >
+    <>
+      <form className="form" onSubmit={handlePress as React.FormEventHandler<HTMLFormElement>} >
       <div className="menu">
         <InputFC inputId={uniqueInputId + "date"} header={"Дата (ДД.ММ.ГГ)"} inputType={"date"}
           inputName={"date"} />
@@ -35,5 +38,7 @@ export default function CounterFC(): React.JSX.Element {
 
       </div>
     </form>
+      <TrainFC />
+    </>
   );
 }
