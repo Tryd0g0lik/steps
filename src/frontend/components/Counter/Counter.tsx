@@ -3,20 +3,18 @@ import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
 const pageLoder = require("../../steps/pageLoder/index.ts");
 import TrainFC from "../Training/Train.tsx";
-// interface ElementProps {
-//   setRecords: (records: any) => void;
-// }
-// const
+
 let loacalStor = '{}';
 if (typeof localStorage.getItem('heandlersData') === 'string') {
   loacalStor = localStorage.getItem('heandlersData') as string;
 }
+
+
 export default function CounterFC() {
   const uniqueInputId = useId();
   const loacalStorJSON = JSON.parse(loacalStor);
   const [records, setRecords] = useState<JSX.Element>(<TrainFC prop={loacalStorJSON} />);
-  // < TrainFC />
-  console.log(`[dataLStoorageGet] records: ${records}`);
+
   const handlePress = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -27,28 +25,21 @@ export default function CounterFC() {
     event.currentTarget.reset();
     return newRecordAdd();
   };
+
   function newRecordAdd() {
     let status = localStorage.getItem('heandlersData')
     if (typeof status === 'string') {
-      // let status = status as string;
-      // console.log(`[CounterFC localStorage]: ${status}, ${typeof status}`);
       const bool = loacalStor.indexOf(status) === -1 ? true : false;
-      console.log(`[dataLStoorageGet] BOOL: ${bool}`)
 
       if (bool) {
-        // const statusJSON = status;
         loacalStor = status;
         return setRecords(<TrainFC prop={status} />);
 
       } else {
-        setTimeout(() => {
-          newRecordAdd()
-          console.log(`[dataLStoorageGet]: setTimeout`)
-        }, 1200)
+        setTimeout(() => { newRecordAdd() }, 1200)
       }
-
     }
-    return loacalStor
+    // return loacalStor
   }
 
   return (
