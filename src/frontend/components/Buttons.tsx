@@ -3,7 +3,7 @@ import { type HeadersInterfaces as HeaderInterface } from "../header-interface.t
 import HeaderFC from "./Header.tsx";
 
 /**
- *
+ * Сделать функцию где - нажжатие на кнопку выводи  TrainFC() в нынешнюю локация
  * @param header: On input a string type.
  * @returns will get the data button's header
  */
