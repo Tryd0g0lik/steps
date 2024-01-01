@@ -57,7 +57,7 @@ describe('Component <TrainFC />:', () => {
 
   test('it render', () => {
     const dom = new JSDOM(`<!DOCTYPE html><html><body><div id="root"></div></body></html>`, resourceLoader);
-    const document = dom.window.document;
+    const { document } = dom.window;
     // beforeEach(() => {
     //   localStorage.clear();
     // });
@@ -66,7 +66,7 @@ describe('Component <TrainFC />:', () => {
     // const root = createRoot(dom);
     // div.innerHTML = renderToStaticMarkup(<TrainFC />);
     const { container } = render(<TrainFC />, div_);
-    // expect(div.querySelector('[ul.className="content"]')).toBeInTheDocument()
-    expect(screen.getByLabelText('Пройдено')).toBeInTheDocument()
+    expect(container.querySelector('[ul.className="content"]')).toBeInTheDocument()
+    // expect(screen.getByLabelText('Пройдено')).toBeInTheDocument()
   });
 })
