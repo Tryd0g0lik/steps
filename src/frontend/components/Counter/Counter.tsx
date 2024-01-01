@@ -3,6 +3,7 @@ import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
 const pageLoder = require("../../steps/pageLoder/index.ts");
 import TrainFC from "../Training/Train.tsx";
+const Publish = require("../../steps/piblisher-data/index.ts");
 
 let loacalStor = '{}';
 if (typeof localStorage.getItem('heandlersData') === 'string') {
@@ -12,9 +13,9 @@ if (typeof localStorage.getItem('heandlersData') === 'string') {
 
 export default function CounterFC() {
   const uniqueInputId = useId();
-  const loacalStorJSON = JSON.parse(loacalStor);
-  const [records, setRecords] = useState<JSX.Element>(<TrainFC prop={loacalStorJSON} />);
-
+  // const loacalStorJSON = JSON.parse(loacalStor);
+  const [records, setRecords] = useState<JSX.Element>(<TrainFC />);
+  const publisher = new Publish();
   const handlePress = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -27,18 +28,24 @@ export default function CounterFC() {
   };
 
   function newRecordAdd() {
-    let status = localStorage.getItem('heandlersData')
-    if (typeof status === 'string') {
-      const bool = loacalStor.indexOf(status) === -1 ? true : false;
 
-      if (bool) {
+    let status = publisher.dataGetForPublish;//localStorage.getItem('heandlersData')
+    console.log(`[newRecordAdd] STATUS: ${status}`)
+    if (typeof status === 'string') { 
+      // const bool = loacalStor.indexOf(status) === -1 ? true : false;
+      
+      // if (bool) {
         loacalStor = status;
-        return setRecords(<TrainFC prop={status} />);
+      return setRecords(<TrainFC />);
 
-      } else {
-        setTimeout(() => { newRecordAdd() }, 1200)
-      }
+      // } else {
+      //   setTimeout(() => { newRecordAdd() }, 1200)
+      // }
     }
+    console.log(`[newRecordAdd] SETTIM: ${status}`)
+    setTimeout(() => { newRecordAdd() }, 1200)
+    status = false;
+    console.log(`[newRecordAdd] loacalsTOR: ${status}`)
     // return loacalStor
   }
 

@@ -24,6 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/backend",
+    "./jest-setup.ts",
     "**/*.js",
     "**/*.jsx"
   ],

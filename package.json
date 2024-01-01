@@ -12,11 +12,15 @@
     "./src/backend"
   ],
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-localstorage-mock": "^2.4.26",
+    "jsdom": "^23.0.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "node-localstorage": "^3.0.5",
     "package.json": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +28,8 @@
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
+    "text-encoding-utf-8": "^1.0.2",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -49,6 +55,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@stylistic/eslint-plugin": "^1.5.1",
     "@stylistic/eslint-plugin-js": "^1.5.1",
+    "@testing-library/preact": "^3.2.3",
     "@types/connect": "^3.4.38",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.14.0",

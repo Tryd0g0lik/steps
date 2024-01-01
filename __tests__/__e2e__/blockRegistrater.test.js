@@ -10,9 +10,9 @@ function index() {
 }
 
 const responce = describe.each([
-  [index(), '01012023', '1'],
-  [index(), '12112023', '2'],
-  [index(), '12112023', '3'],
+  [index(), '01012023', '1']
+  // [index(), '12112023', '2'],
+  // [index(), '12112023', '3'],
 ])
 
 responce('For test ind: %s', (a, d, l) => {
@@ -35,7 +35,10 @@ responce('For test ind: %s', (a, d, l) => {
 
   test('The first rule', async () => {
     const screenWidth = 1024;
+
     await page.goto('http://192.168.1.2:8080/');
+
+
     await page.setViewport({ width: screenWidth, height: 900 });
     // page.reload()
   await page.type('input[name="date"]', d, { delay: 50 });

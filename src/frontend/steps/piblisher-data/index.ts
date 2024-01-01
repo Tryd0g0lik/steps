@@ -28,8 +28,8 @@ module.exports = class Pulisher {
     console.log(`[Pulisher checker]: LStorage.LStorage: ${this.LStorage}`);
 
     let resp: boolean = false;
-    resp = this.data === this.LStorage ? true : false;
-    console.log(`[Pulisher checker]: LStorage.resp: ${this.LStorage}`);
+    resp = (this.data as string).indexOf(this.LStorage as string) !== -1 ? true : false; // equally or not
+    console.log(`[Pulisher checker]: LStorage.resp: ${resp} ${this.data}`);
     return resp;
   };
 
@@ -38,16 +38,17 @@ module.exports = class Pulisher {
    * 'checker' will be returned 'false' and data from locaclStorage will be returned.
    */
   get dataGetForPublish(): (boolean | {} | Record<string, Record<string, string>>) {
-    let respons: (boolean | {} | Record<string, Record<string, string>>) = false;
+    let respons: (boolean | {} | Record<string, Record<string, string>>) = true;
     const checker = this.checker();
     console.log(`[Pulisher publish]: checker: ${checker}`);
-    respons = checker === false ? this.LStorage as Record<any, any> : respons;
-    console.log(`[Pulisher publish]: respons: ${respons}`);
+    console.log(`[Pulisher publish]: respons BEFORE: ${respons}`)
+    respons = checker === false ? this.LStorage as Record<any, any> : (respons as boolean);
+    console.log(`[Pulisher publish]: respons AFTER: ${respons}`);
     if (typeof respons !== 'boolean') {
       this.data = respons;
-      respons = false;
+
       console.log(`[Pulisher publish]: data: ${this.data}`);
-      return this.data;
+      return respons;
     };
     console.log(`[Pulisher publish]: LStorage.lstorageGet: ${this.LStorage}`);
     return false;
