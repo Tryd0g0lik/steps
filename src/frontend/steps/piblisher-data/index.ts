@@ -38,11 +38,11 @@ module.exports = class Pulisher {
    * 'checker' will be returned 'false' and data from locaclStorage will be returned.
    */
   get dataGetForPublish(): (boolean | {} | Record<string, Record<string, string>>) {
-    let respons: (boolean | {} | Record<string, Record<string, string>>) = true;
+    let respons: (boolean | {} | Record<string, Record<string, string>>) = false;
     const checker = this.checker();
     console.log(`[Pulisher publish]: checker: ${checker}`);
     console.log(`[Pulisher publish]: respons BEFORE: ${respons}`)
-    respons = checker === false ? this.LStorage as Record<any, any> : (respons as boolean);
+    respons = checker === false ? this.LStorage as Record<any, any> : respons;
     console.log(`[Pulisher publish]: respons AFTER: ${respons}`);
     if (typeof respons !== 'boolean') {
       this.data = respons;

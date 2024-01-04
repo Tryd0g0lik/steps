@@ -9,13 +9,14 @@ let loacalStor = '{}';
 if (typeof localStorage.getItem('heandlersData') === 'string') {
   loacalStor = localStorage.getItem('heandlersData') as string;
 }
-
+const publisher = new Publish();
 
 export default function CounterFC() {
   const uniqueInputId = useId();
   // const loacalStorJSON = JSON.parse(loacalStor);
   const [records, setRecords] = useState<JSX.Element>(<TrainFC />);
-  const publisher = new Publish();
+
+
   const handlePress = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
