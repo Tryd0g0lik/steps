@@ -1,5 +1,5 @@
 
-const dbSteps = require('../../db/steps.json'); /* template there is "{"date-4645bd71-8bd2-4075-a9b2-27dbfaebb7c6":{"date":"0333-03-31"},"distance-257e314f-9ac4-49c9-8ca7-1d228c2aa1a0":{"distance":"3"}, ....}" */
+let dbSteps = require('../../db/steps.json'); /* template there is "{"date-4645bd71-8bd2-4075-a9b2-27dbfaebb7c6":{"date":"0333-03-31", "distance":"3"}, ....}" */
 const uuidv4 = require('uuid');
 const setKeys = new Set();
 let variableSend = '';
@@ -26,7 +26,9 @@ const stepsGetId = ():string => {
  * @param arr : this array data is from event websocket's message
  */
 const inserter = (str: string, arr: Record<string, any[]>): void => {
-  console.log(`[WS inserter INSERT]: arr[str] ${arr[str]}`);
+  console.log(`[WS inserter INSERT]: arr: ${JSON.stringify(arr)}`);
+  console.log(`[WS inserter INSERT]: str: ${str}`);
+  console.log(`[WS inserter INSERT]: arr[str]: ${JSON.stringify(arr[str]) }`);
   if (arr[str].length > 0) {
     if (str === 'open') {
       
@@ -66,8 +68,23 @@ const inserter = (str: string, arr: Record<string, any[]>): void => {
       variableSend = { ...dbSteps };
       console.log(`[WS inserter INSERT]: send KEY: ${Object.keys(variableSend)} VALUE ${Object.values(variableSend)}`)
 
+    } 
+    else if (str === 'delete') {
+      let dbStepsCopy = { ...dbSteps };
+      let dbStepsCopyKeys = Object.keys(dbStepsCopy);
+      let dbStepsFilter = JSON.parse('{}');
+      
+      dbStepsCopyKeys.forEach((key: string) => {
+        if (key !== arr['delete'][0]['key']) {
+           dbStepsFilter[key] = dbStepsCopy[key]
+        }  
+      });
+
+      if (Object.keys(dbStepsFilter).length > 0) {
+        dbSteps = dbStepsFilter;
+      }
     }
-  };
+  }
 }
 
 module.exports = (wss: any, WS:any) => {
@@ -81,6 +98,7 @@ module.exports = (wss: any, WS:any) => {
       console.log(`[WS message]: MESS: ${mess} `);
       console.log(`[WS message]: stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
       
+      /* checker to unique */
       for (const k in messJson) {
         
         // console.log(`[WS message]: messJson[k].length: ${messJson[k].length} Volume k: ${k}`);
@@ -90,7 +108,9 @@ module.exports = (wss: any, WS:any) => {
       }
       const sendSTR = JSON.stringify(variableSend).slice(0);
       console.log(`[WS message]: sendSTR: ${sendSTR}`);
-    
+      
+
+
       /* This's a mailer for posts of the db */
       wss.clients.forEach((client: any) => {
         console.log(`[WS message]: client.send BEFORE: ${"Sent"} ${client === ws}`)

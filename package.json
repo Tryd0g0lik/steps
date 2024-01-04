@@ -7,7 +7,7 @@
     "node": ">=18.17.1",
     "yarn": ">=1.22.5"
   },
-  "description": "0.4.1 - There is EDIT function will be add; 0.4.0 - Add test a component;  0.3.1 - page's records is updated auto; ",
+  "description": "0.4.1 - There is DELETE function for a position remove; 0.4.0 - Add test a component;  0.3.1 - page's records is updated auto; ",
   "workspaces": [
     "./src/backend"
   ],

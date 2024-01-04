@@ -55,7 +55,7 @@ export class WSocket {
     localStorage.setItem('heandlersData', e['data']);
     console.log(`[WebSocked onMessage]: ${JSON.stringify(this.heandlers)}`);
     console.log(`Получили данные сервера`);
-    this.close;
+    // this.close;
     // }
   };
 

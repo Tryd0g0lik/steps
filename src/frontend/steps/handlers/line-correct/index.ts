@@ -36,10 +36,10 @@ export default (event: React.MouseEvent): void => {
   if (!result) return
 
   const action = keyProporties['action'] === 'delete' ? 'delete' : 'edit';
-  result = action === 'delete' ? JSON.stringify({ delete: { key: keyProporties["key"] } }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
+  result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
 
   wsSocket.onSend = result;
-  wsSocket.close;
+  wsSocket.onSend;
   // отправить данные на сервер.Есть ключь строки и имя действия
   // console.log(typeof htmlElement.dataset.key)
   // console.log(event.target.attributes)
