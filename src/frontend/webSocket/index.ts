@@ -94,9 +94,9 @@ export class WSocket {
 		const stepsStr = JSON.stringify({ ...steps });
 		this.socket.send(stepsStr);
     const keyList = Object.keys(steps);
-    keyList.forEach((key: string) => {
-      this.heandlers[key] = [];
-    })
+    // keyList.forEach((key: string) => {
+    //   this.heandlers[key] = [];
+    // })
     // for (let i = elem in keyList) {
     // 	this.heandlers[`${elem}`] = [];
     // }

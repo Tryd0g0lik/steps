@@ -1,3 +1,4 @@
+import { wait } from "@testing-library/user-event/dist/utils";
 
 let dbSteps = require('../../db/steps.json'); /* template there is "{"date-4645bd71-8bd2-4075-a9b2-27dbfaebb7c6":{"date":"0333-03-31", "distance":"3"}, ....}" */
 const uuidv4 = require('uuid');
@@ -25,11 +26,11 @@ const stepsGetId = ():string => {
  * @param str : this's a transaction key
  * @param arr : this array data is from event websocket's message
  */
-const inserter = (str: string, arr: Record<string, any[]>): void => {
+const inserter =  (str: string, arr: Record<string, any[]>): void => {
   console.log(`[WS inserter INSERT]: arr: ${JSON.stringify(arr)}`);
   console.log(`[WS inserter INSERT]: str: ${str}`);
   console.log(`[WS inserter INSERT]: arr[str]: ${JSON.stringify(arr[str]) }`);
-  if (arr[str].length > 0) {
+  // if (arr[str].length > 0) {
     if (str === 'open') {
       
       /* This's a page loader */      
@@ -69,11 +70,11 @@ const inserter = (str: string, arr: Record<string, any[]>): void => {
       console.log(`[WS inserter INSERT]: send KEY: ${Object.keys(variableSend)} VALUE ${Object.values(variableSend)}`)
 
     } 
-    else if (str === 'delete') {
+    else if  (str === 'delete') {
       console.log(`[WS DELETE]: `);
       let dbStepsCopy = { ...dbSteps };
       console.log(`[WS DELETE]: get db to dbStepsCopy.`);
-      console.log(`[WS DELETE]: It is BEFOR delete: ${JSON.stringify(dbStepsCopy)}`);
+      console.log(`[WS DELETE]: It is a copy db BEFOR delete: ${JSON.stringify(dbStepsCopy)}`);
       let dbStepsCopyKeys = Object.keys(dbStepsCopy);
       console.log(`[WS DELETE]: get the list db's keys: ${dbStepsCopyKeys}`);
       let dbStepsFilter = JSON.parse('{}');
@@ -83,18 +84,19 @@ const inserter = (str: string, arr: Record<string, any[]>): void => {
         if (key !== arr['delete'][0]['key']) {
           
           dbStepsFilter[key] = dbStepsCopy[key]
-          
+          return
         } 
-        
+       
       });
       dbSteps = dbStepsFilter;
+      variableSend = { ...dbSteps };
       console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
 
       // if (Object.keys(dbStepsFilter).length > 0) {
       //   dbSteps = dbStepsFilter;
       // }
     }
-  }
+  // }
 }
 
 module.exports = (wss: any, WS:any) => {
@@ -115,8 +117,9 @@ module.exports = (wss: any, WS:any) => {
         
         // console.log(`[WS message]: messJson[k].length: ${messJson[k].length} Volume k: ${k}`);
         // console.log(` messJson[k]: ${JSON.stringify(messJson[k])}`);
-        inserter(k, messJson);
-        
+        if (messJson[k].length > 0) {
+          inserter(k, messJson);
+        }
       }
       const sendSTR = JSON.stringify(variableSend).slice(0);
       console.log(`[WS message]: sendSTR: ${sendSTR}`);

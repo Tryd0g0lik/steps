@@ -1,6 +1,6 @@
 import React from "react";
 // var { createRoot } = require('react-dom/client');
-const Pulisher = require('../../src/frontend/steps/piblisher-data/index.ts');
+const Publisher = require('../../src/frontend/steps/publisher-data/index.ts');
 import ListRecords from "../../src/frontend/components/Records";
 import { waitFor, render, queryByText, screen } from "@testing-library/react";
 
@@ -13,7 +13,7 @@ import { jsdom, JSDOM } from "jsdom";
 const ls = { "date-0e70546c-4440-42c7-a0aa-58d3ba3c4176": { "date": "2023-01-01", "distance": "1" } };
 
 function TrainFC() {
-  const publisher = new Pulisher()
+  const publisher = new Publisher()
   const resp = publisher.dataGetForPublish;
   return (
     <div className="feature">

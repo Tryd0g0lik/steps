@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import handlerDelte from "../../steps/handlers/line-correct/index.ts";
+import handlerDelte from "../../steps/handlers/line-delete/index.ts";
 // import InputFC from "../Counter/Inputs.tsx";
 // const uniqueRecordId = useId();
 

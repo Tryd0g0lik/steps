@@ -1,10 +1,10 @@
 import React from "react";
 import { WSocket } from "../../../webSocket/index.ts";
-import lineCorrectValidate from "./validate.ts"
-
+import lineCorrectValidate from "./validate.ts";
+// import Publisher from "../../publisher-data/index.ts";
 const url = 'ws://localhost:7070';
 const wsSocket = new WSocket(url);
-
+// const publisher = new Publisher();
 /**
  * This's  a handler. The event getting on entry point.
  *  Functuion geting event's datas. After this datas will be check to 'lineCorrectValidate' validater.
@@ -40,7 +40,8 @@ export default (event: React.MouseEvent): void => {
 
   wsSocket.onSend = result;
   wsSocket.onSend;
-  // отправить данные на сервер.Есть ключь строки и имя действия
+
+  // отправлены данные на сервер.Есть ключь строки и имя действия
   // console.log(typeof htmlElement.dataset.key)
   // console.log(event.target.attributes)
 

@@ -11,7 +11,7 @@ export default function ButtonFC({
   header,
 }: HeaderInterface): React.JSX.Element {
   return (
-    <button data-testid="submit" className="ok" type="submit">
+    <button data-testid="submit" className="ok" data-name='add' type="submit">
 
       <HeaderFC header={header} />
     </button>
