@@ -1,6 +1,6 @@
 {
   "name": "steps-backend",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "main": "./src/index.ts",
   "author": " Tryd0g0lik",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "webpack-merge": "^5.9.0",
     "ws": "^8.15.1"
   },
-  "description": "My webpack project",
+  "description": "0.4.1 - There is DELETE function for a position remove;",
   "scripts": {
     "build": "webpack --mode=production --config ./webpack.config.js",
     "build:dev2": "webpack --mode=development --config ./webpack.config.js",

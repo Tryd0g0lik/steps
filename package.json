@@ -1,22 +1,26 @@
 {
   "name": "ne-staps",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "main": "./src/index.ts",
   "private": true,
   "engines": {
     "node": ">=18.17.1",
     "yarn": ">=1.22.5"
   },
-  "description": " 0.3.1 - page's records is updated auto; 0.4.0 - There is EDIT function will be add ",
+  "description": "0.4.1 - There is DELETE function for a position remove; 0.4.0 - Add test a component;  0.3.1 - page's records is updated auto; ",
   "workspaces": [
     "./src/backend"
   ],
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-localstorage-mock": "^2.4.26",
+    "jsdom": "^23.0.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "node-localstorage": "^3.0.5",
     "package.json": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +28,8 @@
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
+    "text-encoding-utf-8": "^1.0.2",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -49,6 +55,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@stylistic/eslint-plugin": "^1.5.1",
     "@stylistic/eslint-plugin-js": "^1.5.1",
+    "@testing-library/preact": "^3.2.3",
     "@types/connect": "^3.4.38",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.14.0",

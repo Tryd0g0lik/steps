@@ -21,9 +21,7 @@ export default function InputFC({
       <label htmlFor={inputId}>
         <div className="interiorBlock">
           {/* <input name="date" type="date" value={form.date} onChange={handleChange} required /> */}
-          <input name={inputName} defaultValue="" id={inputId}
-            type={inputType}
-            required />
+          <input name={inputName} defaultValue="" id={inputId} type={inputType} required />
         </div>
       </label>
     </div>

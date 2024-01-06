@@ -15,5 +15,7 @@ module.exports = (item: Record<string, Array<Record<string, string>>>) => {// ob
   let stepsStr = JSON.stringify(item);
   console.log("[pageLoder WS] after the JSON confer and before to send ", stepsStr);
   ws.onSend = stepsStr;
+  
+  
 } 
 

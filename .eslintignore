@@ -1,7 +1,7 @@
 
 
 *.js
-__tests__/__e2e__/*.js
+__tests__/**/*.js
 src/*.js
 dist
 
