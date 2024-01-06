@@ -34,7 +34,7 @@ export default function CounterFC() {
 
     console.log()
     try {
-      const formData = new FormData((event as React.FormEvent<HTMLFormElement> | React.FormEventHandler<HTMLElement>).target as HTMLFormElement);
+      const formData = new FormData((event as any).target as HTMLFormElement);
       let date = formData.get("date") as string;
       let distance = formData.get("distanc") as string;
       pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); 
