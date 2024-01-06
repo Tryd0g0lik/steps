@@ -3,13 +3,18 @@ import InputFC from "./Inputs.tsx";
 import ButtonFC from "../Buttons.tsx";
 const pageLoder = require("../../steps/pageLoder/index.ts");
 import TrainFC from "../Training/Train.tsx";
-const Publish = require("../../steps/piblisher-data/index.ts");
+const Publish = require("../../steps/publisher-data/index.ts");
 
-let loacalStor = '{}';
+let localStor = '{}';
 if (typeof localStorage.getItem('heandlersData') === 'string') {
-  loacalStor = localStorage.getItem('heandlersData') as string;
+	localStor = localStorage.getItem('heandlersData') as string;
 }
 const publisher = new Publish();
+
+// <form className="form" onSubmit={handlePress as.. 
+// надо чтоб сработала onSubmit при удаленнии
+// Publish - ИМЕЕТ  проверку на уникальность, При удалении надо обойти проверку
+
 
 export default function CounterFC() {
   const uniqueInputId = useId();
@@ -17,15 +22,27 @@ export default function CounterFC() {
   const [records, setRecords] = useState<JSX.Element>(<TrainFC />);
 
 
-  const handlePress = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handlePress = (event: any) => {
+    (event as React.FormEvent<HTMLFormElement>).preventDefault();
+    console.log('[FORM: ]')
+    // console.log(event)
+    const elem = (event as React.FormEvent<HTMLElement>).target as HTMLElement;
+    const b = elem as HTMLElement
+    console.log(b)
+    console.log(b.dataset)
+    console.log(b.dataset.name)
 
-    const formData = new FormData(event.target as HTMLFormElement);
-    let date = formData.get("date") as string;
-    let distance = formData.get("distanc") as string;
-    pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); 
-    event.currentTarget.reset();
-    return newRecordAdd();
+    console.log()
+    try {
+      const formData = new FormData((event as React.FormEvent<HTMLFormElement> | React.FormEventHandler<HTMLElement>).target as HTMLFormElement);
+      let date = formData.get("date") as string;
+      let distance = formData.get("distanc") as string;
+      pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); 
+      (event as React.FormEvent<HTMLFormElement>).currentTarget.reset();
+      return newRecordAdd();
+    } catch (err) {
+      return newRecordAdd();
+    }
   };
 
   function newRecordAdd() {
@@ -33,20 +50,15 @@ export default function CounterFC() {
     let status = publisher.dataGetForPublish;//localStorage.getItem('heandlersData')
     console.log(`[newRecordAdd] STATUS: ${status}`)
     if (typeof status === 'string') { 
-      // const bool = loacalStor.indexOf(status) === -1 ? true : false;
-      
-      // if (bool) {
-        loacalStor = status;
+      console.log(`[newRecordAdd] STaRT:`)
+			localStor = status;
       return setRecords(<TrainFC />);
 
-      // } else {
-      //   setTimeout(() => { newRecordAdd() }, 1200)
-      // }
     }
     console.log(`[newRecordAdd] SETTIM: ${status}`)
     setTimeout(() => { newRecordAdd() }, 1200)
     status = false;
-    console.log(`[newRecordAdd] loacalsTOR: ${status}`)
+		console.log(`[newRecordAdd] localsTOR: ${status}`)
     // return loacalStor
   }
 
@@ -70,7 +82,16 @@ export default function CounterFC() {
 
       </div>
       </form>
+      <div className="feature" onClick={(e: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLElement>) => {
+        console.log('-----------??', e.target)
+        return handlePress(e as React.FormEvent<HTMLFormElement>);
+
+
+      }}>
+
       {records}
+        {/* <TrainFC /> */}
+      </div>
     </>
   );
 }
