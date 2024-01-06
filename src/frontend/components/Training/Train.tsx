@@ -4,8 +4,10 @@ const Publisher = require("../../steps/publisher-data/index.ts");
 import ListRecords from "../Records/index.tsx";
 
 export default function TrainFC(): React.JSX.Element {
-  const publisher = new Publisher()
-  const resp = publisher.dataGetForPublish;
+  // const publisher = new Publisher()
+  // const resp = publisher.dataGetForPublish;
+  const resp = localStorage.getItem('heandlersData');
+
     return (
       <>
         <ul className="head">

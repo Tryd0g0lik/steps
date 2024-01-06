@@ -21,7 +21,7 @@ export class WSocket {
     console.warn("[WebSocket ]: url", url);
     this.socket = new WebSocket('ws://localhost:7070');
 
-    this.socket.addEventListener('open', async (e: Event) => {
+    this.socket.addEventListener('open', (e: Event) => {
       console.warn("[WebSocket]: Server was connected", this.socket.readyState);
 			this.onSend
 
@@ -31,6 +31,7 @@ export class WSocket {
       console.warn("[WebSocket EventListenerMessage]: ", this.socket.readyState);
       console.warn("[WebSocket Got message]: ", e);
       this.onMessage = e;
+      this.close;
     });
     this.socket.addEventListener('close', (e: any) => {
       if (e.wasClean) console.warn('[WebSocket EventListenerClose]:', this.socket.readyState)
@@ -75,7 +76,7 @@ export class WSocket {
     for (const k of transactionKeys) {
       if (k in stepsJSON) {
         (this.heandlers)[k] = stepsJSON[k],
-          console.log(`this.heandlers[${k}] AFTER: ${JSON.stringify(this.heandlers)}`);
+          console.log(`[WebSocked onSend]Ж this.heandlers[${k}] AFTER: ${JSON.stringify(this.heandlers)}`);
         // Проверить что получаем.После нажати удалить должны получить "{ 'delete': { key: data-... } }"
         // редактировать - "{ 'delete': { key: data-... },  'distance':12 }"
         return

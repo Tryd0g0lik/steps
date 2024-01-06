@@ -34,13 +34,20 @@ export default function CounterFC() {
 
     console.log()
     try {
-      const formData = new FormData((event as any).target as HTMLFormElement);
+      console.log(`[new FormData]: `)
+      const ev = (event as React.FormEvent<HTMLFormElement>);
+      const formData = new FormData(ev.target as HTMLFormElement);
+      console.log(`[new FormData]: formData.get`);
       let date = formData.get("date") as string;
+      console.log(`[new FormData]: formData.distanc`);
       let distance = formData.get("distanc") as string;
+      console.log(`[new FormData]: reset`);
+      ev.currentTarget.reset();
       pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); 
-      (event as React.FormEvent<HTMLFormElement>).currentTarget.reset();
+
       return newRecordAdd();
     } catch (err) {
+      console.warn(`[new FormData]: pageLoder errore`, err);
       return newRecordAdd();
     }
   };
@@ -57,8 +64,8 @@ export default function CounterFC() {
     }
     console.log(`[newRecordAdd] SETTIM: ${status}`)
     setTimeout(() => { newRecordAdd() }, 1200)
-    status = false;
-		console.log(`[newRecordAdd] localsTOR: ${status}`)
+    // status = false;
+    // console.log(`[newRecordAdd] localsTOR: ${status}`)
     // return loacalStor
   }
 

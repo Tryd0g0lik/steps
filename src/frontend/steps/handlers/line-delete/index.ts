@@ -3,7 +3,7 @@ import { WSocket } from "../../../webSocket/index.ts";
 import lineCorrectValidate from "./validate.ts";
 // import Publisher from "../../publisher-data/index.ts";
 const url = 'ws://localhost:7070';
-const wsSocket = new WSocket(url);
+
 // const publisher = new Publisher();
 /**
  * This's  a handler. The event getting on entry point.
@@ -15,6 +15,8 @@ const wsSocket = new WSocket(url);
  * @returns `void`.
  */
 export default (event: React.MouseEvent): void => {
+  console.log(`[line-delete]:  WSocket OPEN`)
+  const wsSocket = new WSocket(url);
   event.preventDefault();
   type DataPeoporties = {
     action: string;
@@ -25,24 +27,23 @@ export default (event: React.MouseEvent): void => {
   let result: boolean | string;
 
   if ((typeof htmlElement.dataset.name !== 'string') || (typeof htmlElement.dataset.key !== 'string')) { return }
-  console.log(htmlElement.dataset.key);
+  console.log('[line-delete]: ', htmlElement.dataset.key);
   const keyProporties: DataPeoporties = {
     action: htmlElement.dataset.name,
     key: htmlElement.dataset.key,
     distance: '0'
   }
   const lStorage = localStorage.getItem('heandlersData')
+  console.log('[line-delete]: lStorage is got:', lStorage);
   result = lineCorrectValidate((lStorage as string), keyProporties['key'])
   if (!result) return
 
   const action = keyProporties['action'] === 'delete' ? 'delete' : 'edit';
   result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
-
+  console.log('[line-delete]: Recived the result:', result);
   wsSocket.onSend = result;
-  wsSocket.onSend;
-
+  console.log('[line-delete]: After routed the result:', result);
+  console.log('[line-delete]: Before will be send:', result); 
   // отправлены данные на сервер.Есть ключь строки и имя действия
-  // console.log(typeof htmlElement.dataset.key)
-  // console.log(event.target.attributes)
-
+ 
 };
