@@ -70,19 +70,29 @@ const inserter = (str: string, arr: Record<string, any[]>): void => {
 
     } 
     else if (str === 'delete') {
+      console.log(`[WS DELETE]: `);
       let dbStepsCopy = { ...dbSteps };
+      console.log(`[WS DELETE]: get db to dbStepsCopy.`);
+      console.log(`[WS DELETE]: It is BEFOR delete: ${JSON.stringify(dbStepsCopy)}`);
       let dbStepsCopyKeys = Object.keys(dbStepsCopy);
+      console.log(`[WS DELETE]: get the list db's keys: ${dbStepsCopyKeys}`);
       let dbStepsFilter = JSON.parse('{}');
-      
+      // console.log(`[WS DELETE]: The position is BEFOR delete: ${JSON.stringify(arr['delete'][0]['key'])}`);
       dbStepsCopyKeys.forEach((key: string) => {
+        
         if (key !== arr['delete'][0]['key']) {
-           dbStepsFilter[key] = dbStepsCopy[key]
-        }  
+          
+          dbStepsFilter[key] = dbStepsCopy[key]
+          
+        } 
+        
       });
+      dbSteps = dbStepsFilter;
+      console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
 
-      if (Object.keys(dbStepsFilter).length > 0) {
-        dbSteps = dbStepsFilter;
-      }
+      // if (Object.keys(dbStepsFilter).length > 0) {
+      //   dbSteps = dbStepsFilter;
+      // }
     }
   }
 }
@@ -96,6 +106,8 @@ module.exports = (wss: any, WS:any) => {
       const url = req.url.slice(0,);
       const messJson = JSON.parse(mess);
       console.log(`[WS message]: MESS: ${mess} `);
+      const dbStepsKEYS = Object.keys(dbSteps);
+      console.log(`[WS message]: stepsdb KEYS BEFORE: ${dbStepsKEYS}`)
       console.log(`[WS message]: stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
       
       /* checker to unique */
