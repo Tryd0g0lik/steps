@@ -9,7 +9,7 @@ module.exports = class Publisher {
   data: string | Record<string, Record<string, string>>;
 
   constructor() {
-    this.data = '{}';
+    this.data = (typeof localStorage.getItem('heandlersData') === "string") ? localStorage.getItem('heandlersData') as string : '{}';
   }
 
 
@@ -25,11 +25,12 @@ module.exports = class Publisher {
    */
   private checker(): boolean {
     this.lstorageGet();
-    console.log(`[Publisher checker]: LStorage.LStorage: ${this.LStorage}`);
-
+    console.log(`[Publisher checker]: LStorage: ${this.LStorage}`);
+    console.log(`[Publisher checker]: this.data: ${this.data}`);
     let resp: boolean = false;
     resp = (this.data as string).indexOf(this.LStorage as string) !== -1 ? true : false; // equally or not
-    console.log(`[Publisher checker]: LStorage.resp: ${resp} ${this.data}`);
+    this.data = this.LStorage;
+    console.log(`[Publisher checker]: LStorage.resp: ${resp} // ${this.data}`);
     return resp;
   };
 
@@ -40,12 +41,12 @@ module.exports = class Publisher {
   get dataGetForPublish(): (boolean | {} | Record<string, Record<string, string>>) {
     let respons: (boolean | {} | Record<string, Record<string, string>>) = false;
     const checker = this.checker();
-    console.log(`[Publisher publish]: checker: ${checker}`);
+    console.log(`[Publisher publish]: CHECKER: ${checker}`);
     console.log(`[Publisher publish]: respons BEFORE: ${respons}`)
     respons = checker === false ? this.LStorage as Record<any, any> : respons;
     console.log(`[Publisher publish]: respons AFTER: ${respons}`);
-    if (typeof respons !== 'boolean') {
-      this.data = respons;
+    if (typeof respons !== 'boolean' ) {
+      
 
       console.log(`[Publisher publish]: data: ${this.data}`);
       return respons;
