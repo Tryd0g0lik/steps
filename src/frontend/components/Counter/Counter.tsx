@@ -34,6 +34,7 @@ export default function CounterFC() {
 
     console.log()
     try {
+      /* When is a add */
       console.log(`[new FormData]: `)
       const ev = (event as React.FormEvent<HTMLFormElement>);
       const formData = new FormData(ev.target as HTMLFormElement);
@@ -47,6 +48,7 @@ export default function CounterFC() {
 
       return newRecordAdd();
     } catch (err) {
+      /* When is a delete */
       console.warn(`[new FormData]: pageLoder errore`, err);
       return newRecordAdd();
     }
@@ -71,7 +73,7 @@ export default function CounterFC() {
 
   return (
     <>
-      <form className="form" onSubmit={handlePress as React.FormEventHandler<HTMLFormElement>} >
+      <form className="form" data-key='' onSubmit={handlePress as React.FormEventHandler<HTMLFormElement>} >
       <div className="menu">
         <InputFC inputId={uniqueInputId + "date"} header={"Дата (ДД.ММ.ГГ)"} inputType={"date"}
           inputName={"date"} />
@@ -89,11 +91,9 @@ export default function CounterFC() {
 
       </div>
       </form>
-      <div className="feature" onClick={(e: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLElement>) => {
-        console.log('-----------??', e.target)
+      <div className="feature" onClick={(e: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLElement> | EventTarget) => {
+      // const etargetStr = String(e.target);
         return handlePress(e as React.FormEvent<HTMLFormElement>);
-
-
       }}>
 
       {records}

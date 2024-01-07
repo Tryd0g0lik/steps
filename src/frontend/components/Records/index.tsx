@@ -1,5 +1,6 @@
 import React, { useId } from "react";
 import handlerDelte from "../../steps/handlers/line-delete/index.ts";
+import hendlerEdit from "../../steps/handlers/line-edit/index.ts";
 // import InputFC from "../Counter/Inputs.tsx";
 // const uniqueRecordId = useId();
 
@@ -22,10 +23,11 @@ export default function ListRecords({ obj }: any): any {
       < ul className="content" key={keyRecord} >
         <li>{o[keyRecord]['date']}</li>
         <li data-testid='distance'>{o[keyRecord]['distance']}</li>
+
         <li>
           <button type={'submit'} data-key={`${keyRecord}`} data-name={'delete'} onClick={handlerDelte}>{delet}</button> </li>
         <li>
-          <button data-key={`${keyRecord}`} data-name={'edit'} onClick={() => { }}>{edit}</button>
+          <button data-key={`${keyRecord}`} data-name={'edit'} onClick={hendlerEdit}>{edit}</button>
         </li>
       </ul >
     ))

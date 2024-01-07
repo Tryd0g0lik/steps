@@ -1,4 +1,4 @@
-import { wait } from "@testing-library/user-event/dist/utils";
+// import { wait } from "@testing-library/user-event/dist/utils";
 
 let dbSteps = require('../../db/steps.json'); /* template there is "{"date-4645bd71-8bd2-4075-a9b2-27dbfaebb7c6":{"date":"0333-03-31", "distance":"3"}, ....}" */
 const uuidv4 = require('uuid');
@@ -87,6 +87,31 @@ const inserter =  (str: string, arr: Record<string, any[]>): void => {
           return
         } 
        
+      });
+      dbSteps = dbStepsFilter;
+      variableSend = { ...dbSteps };
+      console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
+
+      // if (Object.keys(dbStepsFilter).length > 0) {
+      //   dbSteps = dbStepsFilter;
+      // }
+    } else if (str === 'edit') {
+      console.log(`[WS EDIT]: `);
+      let dbStepsCopy = { ...dbSteps };
+      console.log(`[WS EDIT]: get db to dbStepsCopy.`);
+      console.log(`[WS EDIT]: It is a copy db BEFOR delete: ${JSON.stringify(dbStepsCopy)}`);
+      let dbStepsCopyKeys = Object.keys(dbStepsCopy);
+      console.log(`[WS EDIT]: get the list db's keys: ${dbStepsCopyKeys}`);
+      let dbStepsFilter = JSON.parse('{}');
+      // console.log(`[WS DELETE]: The position is BEFOR delete: ${JSON.stringify(arr['delete'][0]['key'])}`);
+      dbStepsCopyKeys.forEach((key: string) => {
+
+        if (key === arr['edit'][0]['key']) {
+
+          dbStepsFilter[key]['distance'] = dbStepsCopy[key]['distance']
+          return
+        }
+
       });
       dbSteps = dbStepsFilter;
       variableSend = { ...dbSteps };

@@ -38,10 +38,13 @@ export default (event: React.MouseEvent): void => {
   result = lineCorrectValidate((lStorage as string), keyProporties['key'])
   if (!result) return
 
-  const action = keyProporties['action'] === 'delete' ? 'delete' : 'edit';
-  result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
+  let action: string = '';
+  if (keyProporties['action'] === 'delete')
+  {  action = 'delete'}  //: 'edit';
+  // result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
+
   console.log('[line-delete]: Recived the result:', result);
-  wsSocket.onSend = result;
+  wsSocket.onSend = JSON.stringify({ delete: [{ key: keyProporties["key"] }] }); // result;
   console.log('[line-delete]: After routed the result:', result);
   console.log('[line-delete]: Before will be send:', result); 
   // отправлены данные на сервер.Есть ключь строки и имя действия
