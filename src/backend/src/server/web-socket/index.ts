@@ -30,7 +30,7 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
   console.log(`[WS inserter INSERT]: arr: ${JSON.stringify(arr)}`);
   console.log(`[WS inserter INSERT]: str: ${action}`);
   console.log(`[WS inserter INSERT]: arr[action]: ${JSON.stringify(arr[action]) }`);
-  // if (arr[str].length > 0) {
+
   if (action === 'open') {
       
       /* This's a page loader */      
@@ -96,6 +96,8 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
       //   dbSteps = dbStepsFilter;
       // }
   } else if (action === 'edit') {
+    /* It's a pattern: '{ 'edit': [{ key: formDatakey, "distance": distance }] }' */
+
       console.log(`[WS EDIT]: `);
     console.log(`[WS EDIT]: recive's datas from site: ${JSON.stringify(arr[action])}`);
     const datasFromSite = arr[action][0];
@@ -105,28 +107,11 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
       console.log(`[WS EDIT]: get db to dbStepsCopy.`);
       console.log(`[WS EDIT]: It is a copy db BEFOR aDIT: ${JSON.stringify(dbStepsCopy)}`);
     dbStepsCopy[datasFromSite['key']]['distance'] = datasFromSite['distance'];
-    // dbStepsCopy[keyFromSite]['diatance'] = datasFromSite[keyFromSite]['distance'];
-    // console.log(`[WS EDIT]: adite's datas: ${dbStepsCopy}`);
-      // let dbStepsFilter = JSON.parse('{}');
-      // console.log(`[WS DELETE]: The position is BEFOR delete: ${JSON.stringify(arr['delete'][0]['key'])}`);
-      // dbStepsCopyKeys.forEach((key: string) => {
-
-      //   if (key === arr['edit'][0]['key']) {
-
-      //     dbStepsFilter[key]['distance'] = dbStepsCopy[key]['distance']
-      //     return
-      //   }
-
-      // });
       dbSteps = dbStepsCopy;
       variableSend = { ...dbSteps };
-      // console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
-
-      // if (Object.keys(dbStepsFilter).length > 0) {
-      //   dbSteps = dbStepsFilter;
-      // }
+  
     }
-  // }
+  
 }
 
 module.exports = (wss: any, WS:any) => {
@@ -136,19 +121,37 @@ module.exports = (wss: any, WS:any) => {
     ws.on('message', (mess: any) => {
       
       const url = req.url.slice(0,);
-      const messJson = JSON.parse(mess);
+      let messJson = JSON.parse(mess);
+      
       console.log(`[WS message]: MESS: ${mess} `);
       const dbStepsKEYS = Object.keys(dbSteps);
       console.log(`[WS message]: stepsdb KEYS BEFORE: ${dbStepsKEYS}`)
       console.log(`[WS message]: stepsdb BEFORE: ${JSON.stringify(dbSteps)}`)
       
       /* checker to unique */
-      for (const k in messJson) {
+      for (let line in messJson) {
         
         // console.log(`[WS message]: messJson[k].length: ${messJson[k].length} Volume k: ${k}`);
         // console.log(` messJson[k]: ${JSON.stringify(messJson[k])}`);
-        if (messJson[k].length > 0) {
-          inserter(k, messJson);
+
+        if (messJson[line].length > 0) {
+          /**
+         * here a 'date' cheking . If it is find, that a variable 'action' = 'edit'
+         */
+          if (line.indexOf('insert') >= 0) {
+          const result = dbStepsKEYS.filter((key: string) => {
+            if (dbSteps[key]['date'].indexOf(messJson['insert'][0]['date'])>= 0) {
+              return key
+            }
+          });
+           if (result.length > 0) {
+             const lineKey = result[0];
+             messJson = { "open": [], "close": [], "insert": [], "data": [], "delete": [], "edit": [{ key: lineKey, "distance": messJson['insert'][0]["distance"] }] }
+               
+             line = 'edit';
+           }
+          };
+          inserter(line, messJson);
         }
       }
       const sendSTR = JSON.stringify(variableSend).slice(0);
