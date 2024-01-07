@@ -35,6 +35,7 @@ export default function CounterFC() {
     console.log()
     try {
       /* When is a add */
+
       console.log(`[new FormData]: `)
       const ev = (event as React.FormEvent<HTMLFormElement>);
       const formData = new FormData(ev.target as HTMLFormElement);
@@ -43,9 +44,16 @@ export default function CounterFC() {
       console.log(`[new FormData]: formData.distanc`);
       let distance = formData.get("distanc") as string;
       console.log(`[new FormData]: reset`);
-      ev.currentTarget.reset();
-      pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] }); 
 
+      const formDatakey = (ev.target as HTMLFormElement).dataset['key'];
+      (formDatakey as string).length < 5 ? (
+        pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] })
+      ) : (
+        pageLoder({ 'edit': [{ key: formDatakey, "distance": distance.slice(0) }] })
+      )
+
+
+      ev.currentTarget.reset();
       return newRecordAdd();
     } catch (err) {
       /* When is a delete */

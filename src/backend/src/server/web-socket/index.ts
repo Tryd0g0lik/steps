@@ -26,24 +26,24 @@ const stepsGetId = ():string => {
  * @param str : this's a transaction key
  * @param arr : this array data is from event websocket's message
  */
-const inserter =  (str: string, arr: Record<string, any[]>): void => {
+const inserter =  (action: string, arr: Record<string, any[]>): void => {
   console.log(`[WS inserter INSERT]: arr: ${JSON.stringify(arr)}`);
-  console.log(`[WS inserter INSERT]: str: ${str}`);
-  console.log(`[WS inserter INSERT]: arr[str]: ${JSON.stringify(arr[str]) }`);
+  console.log(`[WS inserter INSERT]: str: ${action}`);
+  console.log(`[WS inserter INSERT]: arr[action]: ${JSON.stringify(arr[action]) }`);
   // if (arr[str].length > 0) {
-    if (str === 'open') {
+  if (action === 'open') {
       
       /* This's a page loader */      
       variableSend = { ...dbSteps }
       console.log(`[WS inserter OPEN]: send: ${variableSend}`);
     }
-    else if (str === 'insert') {
+  else if (action === 'insert') {
       const filterArrKey = <string[]>[];
 
       /*
        *  Getting data unique 
       */
-      const filterArr = <[Record<string, any[]>]>arr[str].filter((elem: any) => {
+    const filterArr = <[Record<string, any[]>]>arr[action].filter((elem: any) => {
 
         const arrayVal = Object.values(elem);
         const arrayKey = Object.keys(elem);
@@ -70,7 +70,7 @@ const inserter =  (str: string, arr: Record<string, any[]>): void => {
       console.log(`[WS inserter INSERT]: send KEY: ${Object.keys(variableSend)} VALUE ${Object.values(variableSend)}`)
 
     } 
-    else if  (str === 'delete') {
+  else if (action === 'delete') {
       console.log(`[WS DELETE]: `);
       let dbStepsCopy = { ...dbSteps };
       console.log(`[WS DELETE]: get db to dbStepsCopy.`);
@@ -95,27 +95,32 @@ const inserter =  (str: string, arr: Record<string, any[]>): void => {
       // if (Object.keys(dbStepsFilter).length > 0) {
       //   dbSteps = dbStepsFilter;
       // }
-    } else if (str === 'edit') {
+  } else if (action === 'edit') {
       console.log(`[WS EDIT]: `);
+    console.log(`[WS EDIT]: recive's datas from site: ${JSON.stringify(arr[action])}`);
+    const datasFromSite = arr[action][0];
+    const keyFromSite = Object.keys(datasFromSite);
+    console.log(`[WS EDIT]: recive's datas from site - key:. ${keyFromSite}`);
       let dbStepsCopy = { ...dbSteps };
       console.log(`[WS EDIT]: get db to dbStepsCopy.`);
-      console.log(`[WS EDIT]: It is a copy db BEFOR delete: ${JSON.stringify(dbStepsCopy)}`);
-      let dbStepsCopyKeys = Object.keys(dbStepsCopy);
-      console.log(`[WS EDIT]: get the list db's keys: ${dbStepsCopyKeys}`);
-      let dbStepsFilter = JSON.parse('{}');
+      console.log(`[WS EDIT]: It is a copy db BEFOR aDIT: ${JSON.stringify(dbStepsCopy)}`);
+    dbStepsCopy[datasFromSite['key']]['distance'] = datasFromSite['distance'];
+    // dbStepsCopy[keyFromSite]['diatance'] = datasFromSite[keyFromSite]['distance'];
+    // console.log(`[WS EDIT]: adite's datas: ${dbStepsCopy}`);
+      // let dbStepsFilter = JSON.parse('{}');
       // console.log(`[WS DELETE]: The position is BEFOR delete: ${JSON.stringify(arr['delete'][0]['key'])}`);
-      dbStepsCopyKeys.forEach((key: string) => {
+      // dbStepsCopyKeys.forEach((key: string) => {
 
-        if (key === arr['edit'][0]['key']) {
+      //   if (key === arr['edit'][0]['key']) {
 
-          dbStepsFilter[key]['distance'] = dbStepsCopy[key]['distance']
-          return
-        }
+      //     dbStepsFilter[key]['distance'] = dbStepsCopy[key]['distance']
+      //     return
+      //   }
 
-      });
-      dbSteps = dbStepsFilter;
-      variableSend = { ...dbSteps };
-      console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
+      // });
+      dbSteps = dbStepsCopy;
+      // variableSend = { ...dbSteps };
+      // console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
 
       // if (Object.keys(dbStepsFilter).length > 0) {
       //   dbSteps = dbStepsFilter;

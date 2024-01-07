@@ -15,7 +15,8 @@ const url = 'ws://localhost:7070';
  * @returns `void`.
  */
 export default (event: React.MouseEvent): void => {
-  console.log(`[line-delete]:  WSocket OPEN`)
+  
+  console.log(`[line-delete]:  WSocket OPEN`, event.target)
   const wsSocket = new WSocket(url);
   event.preventDefault();
   type DataPeoporties = {
@@ -26,21 +27,24 @@ export default (event: React.MouseEvent): void => {
   const htmlElement = <HTMLButtonElement>event.target;
   let result: boolean | string;
 
-  if ((typeof htmlElement.dataset.name !== 'string') || (typeof htmlElement.dataset.key !== 'string')) { return }
+  if ((htmlElement.dataset.name) && (htmlElement.dataset.name !== 'delete')) { return }
+
   console.log('[line-delete]: ', htmlElement.dataset.key);
   const keyProporties: DataPeoporties = {
-    action: htmlElement.dataset.name,
-    key: htmlElement.dataset.key,
+    action: htmlElement.dataset.name as string,
+    key: htmlElement.dataset.key as string,
     distance: '0'
   }
+  
   const lStorage = localStorage.getItem('heandlersData')
   console.log('[line-delete]: lStorage is got:', lStorage);
   result = lineCorrectValidate((lStorage as string), keyProporties['key'])
   if (!result) return
 
   let action: string = '';
-  if (keyProporties['action'] === 'delete')
-  {  action = 'delete'}  //: 'edit';
+  if (keyProporties['action'] === 'delete') {
+    action = 'delete'
+  }
   // result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
 
   console.log('[line-delete]: Recived the result:', result);
