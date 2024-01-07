@@ -68,7 +68,7 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
       };
       variableSend = { ...dbSteps };
       console.log(`[WS inserter INSERT]: send KEY: ${Object.keys(variableSend)} VALUE ${Object.values(variableSend)}`)
-
+      return
     } 
   else if (action === 'delete') {
       console.log(`[WS DELETE]: `);
@@ -94,7 +94,8 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
 
       // if (Object.keys(dbStepsFilter).length > 0) {
       //   dbSteps = dbStepsFilter;
-      // }
+    // }
+    return
   } else if (action === 'edit') {
     /* It's a pattern: '{ 'edit': [{ key: formDatakey, "distance": distance }] }' */
 
@@ -105,11 +106,17 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
     console.log(`[WS EDIT]: recive's datas from site - key:. ${keyFromSite}`);
       let dbStepsCopy = { ...dbSteps };
       console.log(`[WS EDIT]: get db to dbStepsCopy.`);
-      console.log(`[WS EDIT]: It is a copy db BEFOR aDIT: ${JSON.stringify(dbStepsCopy)}`);
-    dbStepsCopy[datasFromSite['key']]['distance'] = datasFromSite['distance'];
+    console.log(`[WS EDIT]: It is a copy db BEFOR aDIT: ${JSON.stringify(dbStepsCopy)}`);
+    console.log(`[WS EDIT]: get db to oldDistance: `, dbStepsCopy[datasFromSite['key']]['distance']);
+    console.log(`[WS EDIT]: get db to datasFromSite-Distance: `, datasFromSite['distance']);
+    const newDistance = String(Number(datasFromSite['distance']) + Number(dbStepsCopy[datasFromSite['key']]['distance']));
+    
+    console.log(`[WS EDIT]: get db to newDistance: `, newDistance);
+    dbStepsCopy[datasFromSite['key']]['distance'] = newDistance;
+    
       dbSteps = dbStepsCopy;
       variableSend = { ...dbSteps };
-  
+      return
     }
   
 }
@@ -152,6 +159,7 @@ module.exports = (wss: any, WS:any) => {
            }
           };
           inserter(line, messJson);
+          break
         }
       }
       const sendSTR = JSON.stringify(variableSend).slice(0);
