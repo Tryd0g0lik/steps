@@ -36,24 +36,31 @@ export default function CounterFC() {
     try {
       /* When is a add */
 
-      console.log(`[new FormData]: `)
+      console.log(`[new formSourceData]: `)
       const ev = (event as React.FormEvent<HTMLFormElement>);
-      const formData = new FormData(ev.target as HTMLFormElement);
-      console.log(`[new FormData]: formData.get`);
-      let date = formData.get("date") as string;
-      console.log(`[new FormData]: formData.distanc`);
-      let distance = formData.get("distanc") as string;
+      const formSourceData = new FormData(ev.target as HTMLFormElement);
+
+      console.log(`[new formSourceData]: formSourceData.get`);
+      let date = (formSourceData.get("date") as string).slice(0);
+      console.log(`[new FormData]: formSourceData.distanc`);
+      let distance = (formSourceData.get("distanc") as string).slice(0);
       console.log(`[new FormData]: reset`);
+
 
       const formDatakey = (ev.target as HTMLFormElement).dataset['key'];
       (formDatakey as string).length < 5 ? (
-        pageLoder({ 'insert': [{ 'date': date.slice(0), 'distance': distance.slice(0) }] })
+        pageLoder({ 'insert': [{ 'date': date, 'distance': distance }] })
       ) : (
-        pageLoder({ 'edit': [{ key: formDatakey, "distance": distance.slice(0) }] })
-      )
+          pageLoder({ 'edit': [{ key: formDatakey, "distance": distance }] })
 
+      );
 
+      /* '<form class="form" data-key="...">' Reset the 'data-key' and form field  */
+      const form = document.querySelector('form.form') as HTMLFormElement;
+      console.log('[formCurrentData]: FORM: ', form);
+      form.dataset.key = '';
       ev.currentTarget.reset();
+
       return newRecordAdd();
     } catch (err) {
       /* When is a delete */

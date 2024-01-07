@@ -119,7 +119,7 @@ const inserter =  (action: string, arr: Record<string, any[]>): void => {
 
       // });
       dbSteps = dbStepsCopy;
-      // variableSend = { ...dbSteps };
+      variableSend = { ...dbSteps };
       // console.log(`[WS DELETE]: The position is AFTER delete: ${JSON.stringify(dbSteps)}`);
 
       // if (Object.keys(dbStepsFilter).length > 0) {
