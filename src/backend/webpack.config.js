@@ -15,6 +15,7 @@ module.exports = {
       patterns: [
 
         { from: './src/db', to: './db', }
+
       ],
     }),
   ],
