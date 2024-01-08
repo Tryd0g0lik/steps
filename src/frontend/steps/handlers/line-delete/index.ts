@@ -2,7 +2,7 @@ import React from "react";
 import { WSocket } from "../../../webSocket/index.ts";
 import lineCorrectValidate from "./validate.ts";
 // import Publisher from "../../publisher-data/index.ts";
-const url = 'ws://localhost:7070';
+const url = 'ws://steps-u8bq.onrender.com';
 
 // const publisher = new Publisher();
 /**

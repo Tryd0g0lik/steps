@@ -19,7 +19,7 @@ export class WSocket {
   // }
   constructor(url: string) {
     console.warn("[WebSocket ]: url", url);
-    this.socket = new WebSocket('ws://localhost:7070');
+    this.socket = new WebSocket('ws://steps-u8bq.onrender.com');
 
     this.socket.addEventListener('open', (e: Event) => {
       console.warn("[WebSocket]: Server was connected", this.socket.readyState);
