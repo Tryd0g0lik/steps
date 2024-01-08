@@ -8,7 +8,7 @@ module.exports = (item: Record<string, Array<Record<string, string>>>) => {// ob
   if (!ws || (ws
     && (ws.readyState < 1 || ws.readyState > 1))) {
     console.log("[pageLoder WS] has been ran");
-    ws = new WSocket('ws://localhost:7070');
+    ws = new WSocket('wss//steps-u8bq.onrender.com');
     console.log("[pageLoder WS] has been made");
   };
   console.log("[pageLoder WS] has been JSON confert");

@@ -4,7 +4,7 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'none',
-  target: 'node18.18',
+  target: 'node19.9',
   entry: path.resolve(__dirname, 'src/result/index.js'),
   output: {
     path: path.resolve(__dirname, '../../dist')
@@ -15,7 +15,8 @@ module.exports = {
       patterns: [
         { from: './src/result', to: './server', },
         { from: './src/result/web-socket', to: './server/web-socket', },
-        { from: './src/result/web-socket/functions', to: './server/web-socket/functions', }
+        { from: './src/result/web-socket/functions', to: './server/web-socket/functions', },
+        { from: './src/db', to: './server/db', }
       ],
     }),
   ],
