@@ -1,2 +1,2 @@
-import "./frontend/steps/index.tsx";
+import "./frontend/steps/index.ts";
 import "./index.tsx"
