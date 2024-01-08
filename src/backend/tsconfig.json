@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "sourceMap": false,
-    "outDir": "./src/result",
+    "outDir": "../../dist/server",
     "module": "CommonJS",
     "allowJs": false,
     "strictNullChecks": true
