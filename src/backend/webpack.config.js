@@ -13,18 +13,12 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-
         { from: './src/db', to: './db', }
-
       ],
     }),
   ],
   module: {
-    rules: [
-      // Add your rules for custom modules here
-      // Learn more about loaders from http://webpack.js.org/loaders/
-
-    ],
+    rules: [],
     exprContextCritical: false
   },
   resolve: {
