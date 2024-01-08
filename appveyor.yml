@@ -6,13 +6,15 @@ image:
 platform:
   - x64
 
-stack: node 18.18.1
+stack: 
+  - node 18.18.1
+  - yarn >=1.22.21
 
 cache:
   - node_modules
 
 install:
- - yarn >=1.22.21
+ - yarn
 
 build: off
 
