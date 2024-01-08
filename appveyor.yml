@@ -14,9 +14,6 @@ cache:
 
 install:
  - yarn@1.22.21
-
-cache:
-  "%LOCALAPPDATA%\\Yarn"
   
 build: off
 
