@@ -12,7 +12,7 @@ const app = new Koa();
 
 app.use(logger());
 app.use(cors());
-const PORT = 7070 || process.env.PORT;
+const PORT = process.env.PORT || 7070;
 
 const server = new http.createServer(app.callback());
 const wss = new WS.Server({ server });
