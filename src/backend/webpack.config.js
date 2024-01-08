@@ -4,7 +4,6 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'none',
-  target: 'node19.9.0',
   entry: path.resolve(__dirname, 'src/result/index.js'),
   output: {
     path: path.resolve(__dirname, '../../dist')
