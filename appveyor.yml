@@ -7,7 +7,7 @@ platform:
   - x64
 
 stack: 
-  - node 19.9.0
+  - node >=18
 
 cache:
   - node_modules
