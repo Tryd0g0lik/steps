@@ -1,1 +1,2 @@
-require("./server/index.ts");
+// require("./server/index.ts");
+console.log('Good world')
