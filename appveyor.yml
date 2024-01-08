@@ -13,8 +13,11 @@ cache:
   - node_modules
 
 install:
- - npm i yarn@1.22.21
+ - yarn@1.22.21
 
+cache:
+  "%LOCALAPPDATA%\\Yarn"
+  
 build: off
 
 
