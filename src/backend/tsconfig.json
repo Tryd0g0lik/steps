@@ -12,7 +12,6 @@
     "node_modules",
     "directory",
     "dist",
-    "./src/result",
     "../../archive"
   ],
   "include": [
