@@ -8,7 +8,6 @@ platform:
 
 stack: 
   - node 18.18.1
-  - yarn >=1.22.21
 
 cache:
   - node_modules

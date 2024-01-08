@@ -7,7 +7,7 @@
   "private": false,
   "engines": {
     "node": ">=18.18.1",
-    "yarn": ">=1.22.21"
+    "yarn": "1.22.21"
   },
   "dependencies": {
     "eslint-config-airbnb-typescript": "^17.1.0",
