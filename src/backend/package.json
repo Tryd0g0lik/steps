@@ -44,7 +44,7 @@
     "build:prod": "webpack ",
     "build:render": "yarn add package.json && npx tsc && yarn tsc && webpack",
     "watch": "webpack --watch",
-    "start": "node src/result/index.js localhost 7070"
+    "start": "node dist/result/index.js localhost 7070"
   },
   "files": []
 }
