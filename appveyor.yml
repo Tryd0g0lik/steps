@@ -13,7 +13,7 @@ cache:
   - node_modules
 
 install:
- - yarn@1.22.21
+ - npm i yarn@1.22.21
 
 build: off
 
