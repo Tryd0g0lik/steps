@@ -12,7 +12,7 @@ const app = new Koa();
 
 app.use(logger());
 app.use(cors());
-const PORT = process.env.PORT || 7070;
+
 
 const server = new http.createServer(app.callback());
 const wss = new WS.Server({ server });
@@ -35,6 +35,7 @@ app.use(async (ctx: any) => {
   console.log('ctx.status', ctx.status);
 })
 WSServerBody(wss, WS);
+const PORT = process.env.PORT || 7070;
 console.log('[HOST]: ', process.env.HOST);
 console.log('[PORT]: process.env.PORT:', process.env.PORT + '|| PORT' + PORT);
 server.listen(PORT, () => {
