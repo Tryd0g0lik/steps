@@ -6,7 +6,14 @@ import ListRecords from "../Records/index.tsx";
 export default function TrainFC(): React.JSX.Element {
   // const publisher = new Publisher()
   // const resp = publisher.dataGetForPublish;
-  const resp = localStorage.getItem('heandlersData');
+  let resp = '{}';
+  if (localStorage.getItem('heandlersData') || localStorage.getItem('heandlersData') !== null) {
+    resp = localStorage.getItem('heandlersData') as string;
+  } else {
+    localStorage.setItem('heandlersData', '{}');
+    resp = localStorage.getItem('heandlersData') as string;
+  }
+
 
     return (
       <>
