@@ -1,7 +1,5 @@
 import type React from "react";
 import { WSocket } from "../../../webSocket/index.ts";
-// import lineCorrectValidate from "./validate.ts";
-// import Publisher from "../../publisher-data/index.ts";
 const url = "ws://localhost:7070"; // "wss//steps-u8bq.onrender.com"; // 'ws://localhost: 7070';
 
 // const publisher = new Publisher();
@@ -25,7 +23,6 @@ export default (event: React.MouseEvent): void => {
   }
 
   const htmlElement = <HTMLButtonElement>event.target;
-  // let result: boolean | string;
   const datasetName = htmlElement.dataset.name;
   const datasetKey = htmlElement.dataset.key;
   if ((datasetName === undefined || datasetName !== "delete") || datasetKey === undefined) return;
@@ -36,21 +33,6 @@ export default (event: React.MouseEvent): void => {
     key: datasetKey,
     distance: "0"
   };
-
-  // let lStorage: string = "{}";
-  // const localStorageData = localStorage.getItem("heandlersData");
-  // if (typeof localStorageData === "string") {
-  //   lStorage = localStorageData;
-  // }
-  // console.log("[line-delete]: lStorage is got:", lStorage);
-
-  // result = lineCorrectValidate((lStorage), keyProporties.key) as boolean;
-  // if (!result) return;
-
-  // console.log("[line-delete]: Recived the result:", result);
   const stepsStr: string = JSON.stringify({ delete: [{ key: keyProporties.key }] });
-  wsSocket.onSend = stepsStr; // result;
-  // console.log("[line-delete]: After routed the result:", result);
-  // console.log("[line-delete]: Before will be send:", result);
-  // // отправлены данные на сервер.Есть ключь строки и имя действия
+  wsSocket.onSend = stepsStr;
 };

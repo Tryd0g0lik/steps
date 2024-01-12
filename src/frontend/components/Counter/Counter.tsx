@@ -98,14 +98,11 @@ export default function CounterFC(): React.JSX.Element {
       <div className="feature" onClick={(e: React.MouseEvent<HTMLElement>) => {
         const target = (e as React.MouseEvent).target;
         const datasetName = (target as HTMLButtonElement).dataset.name;
-        console.log("--------------------------------------- datasetName: ", datasetName);
         if (datasetName !== undefined && datasetName.includes("delete")) {
           handlePress(e);
         }
       }}>
-
         {records}
-        {/* <TrainFC /> */}
       </div>
     </>
   );
