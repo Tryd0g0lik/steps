@@ -1,6 +1,6 @@
 import type React from "react";
 import { WSocket } from "../../../webSocket/index.ts";
-const url = "ws://localhost:7070"; // "wss//steps-u8bq.onrender.com"; // 'ws://localhost: 7070';
+const url = "wss://steps-u8bq.onrender.com"; // "wss//steps-u8bq.onrender.com"; // 'ws://localhost:7070';
 
 // const publisher = new Publisher();
 /**
