@@ -3,8 +3,11 @@
 *.js
 __tests__/**/*.js
 src/*.js
-dist
-
+dist/
+archive/
+.github/
+src/index.ts
+.eslintrc.cjs
 node_modules/
 
 archive

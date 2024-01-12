@@ -1,7 +1,7 @@
 {
   "name": "steps-backend",
   "version": "0.4.1",
-  "main": "./src/index.ts",
+  "main": "./src/server/index.ts",
   "author": " Tryd0g0lik",
   "license": "MIT",
   "private": false,
@@ -44,7 +44,7 @@
     "build:prod": "webpack ",
     "build:render": "yarn add package.json && npx tsc && yarn tsc && webpack",
     "watch": "webpack --watch",
-    "start": "node dist/result/index.js localhost 7070"
+    "start": "node ../../dist/server/index.js localhost 7070"
   },
   "files": []
 }

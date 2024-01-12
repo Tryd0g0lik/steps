@@ -1,2 +1,1 @@
-// require("./server/index.ts");
-console.log('Good world')
+console.log('Word hollo');

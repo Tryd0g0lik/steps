@@ -12,7 +12,7 @@ export default function InputFC({
   header,
   inputName,
   inputType,
-  inputId = "0",
+  inputId = "0"
 }: Forms): React.JSX.Element {
   // const { header } = prop.forms;
   return (

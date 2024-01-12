@@ -3,7 +3,13 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.config');
 module.exports = merge(common, {
   watchOptions: {
-    ignored: /backend/
+    ignored: [
+      "**/backend",
+      "dist\\db",
+      "dist\\server",
+      "node_modules",
+      "**/node_modules"
+    ]
   },
   devServer: {
     static: {

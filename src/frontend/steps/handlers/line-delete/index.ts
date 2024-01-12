@@ -1,8 +1,8 @@
-import React from "react";
+import type React from "react";
 import { WSocket } from "../../../webSocket/index.ts";
-import lineCorrectValidate from "./validate.ts";
+// import lineCorrectValidate from "./validate.ts";
 // import Publisher from "../../publisher-data/index.ts";
-const url = 'wss//steps-u8bq.onrender.com'// 'ws://localhost: 7070';
+const url = "ws://localhost:7070"; // "wss//steps-u8bq.onrender.com"; // 'ws://localhost: 7070';
 
 // const publisher = new Publisher();
 /**
@@ -15,42 +15,42 @@ const url = 'wss//steps-u8bq.onrender.com'// 'ws://localhost: 7070';
  * @returns `void`.
  */
 export default (event: React.MouseEvent): void => {
-  
-  console.log(`[line-delete]:  WSocket OPEN`, event.target)
+  console.log("[line-delete]:  WSocket OPEN", event.target);
   const wsSocket = new WSocket(url);
   event.preventDefault();
-  type DataPeoporties = {
-    action: string;
-    key: string;
+  interface DataPeoporties {
+    action: string
+    key: string
     distance: string
-  };
+  }
+
   const htmlElement = <HTMLButtonElement>event.target;
-  let result: boolean | string;
+  // let result: boolean | string;
+  const datasetName = htmlElement.dataset.name;
+  const datasetKey = htmlElement.dataset.key;
+  if ((datasetName === undefined || datasetName !== "delete") || datasetKey === undefined) return;
 
-  if ((htmlElement.dataset.name) && (htmlElement.dataset.name !== 'delete')) { return }
-
-  console.log('[line-delete]: ', htmlElement.dataset.key);
+  console.log("[line-delete]: ", datasetKey);
   const keyProporties: DataPeoporties = {
-    action: htmlElement.dataset.name as string,
-    key: htmlElement.dataset.key as string,
-    distance: '0'
-  }
-  
-  const lStorage = localStorage.getItem('heandlersData')
-  console.log('[line-delete]: lStorage is got:', lStorage);
-  result = lineCorrectValidate((lStorage as string), keyProporties['key'])
-  if (!result) return
+    action: datasetName,
+    key: datasetKey,
+    distance: "0"
+  };
 
-  let action: string = '';
-  if (keyProporties['action'] === 'delete') {
-    action = 'delete'
-  }
-  // result = action === 'delete' ? JSON.stringify({ delete: [{ key: keyProporties["key"] }] }) : JSON.stringify({ edit: { key: keyProporties["key"], "distance": keyProporties['distance'] } });
+  // let lStorage: string = "{}";
+  // const localStorageData = localStorage.getItem("heandlersData");
+  // if (typeof localStorageData === "string") {
+  //   lStorage = localStorageData;
+  // }
+  // console.log("[line-delete]: lStorage is got:", lStorage);
 
-  console.log('[line-delete]: Recived the result:', result);
-  wsSocket.onSend = JSON.stringify({ delete: [{ key: keyProporties["key"] }] }); // result;
-  console.log('[line-delete]: After routed the result:', result);
-  console.log('[line-delete]: Before will be send:', result); 
-  // отправлены данные на сервер.Есть ключь строки и имя действия
- 
+  // result = lineCorrectValidate((lStorage), keyProporties.key) as boolean;
+  // if (!result) return;
+
+  // console.log("[line-delete]: Recived the result:", result);
+  const stepsStr: string = JSON.stringify({ delete: [{ key: keyProporties.key }] });
+  wsSocket.onSend = stepsStr; // result;
+  // console.log("[line-delete]: After routed the result:", result);
+  // console.log("[line-delete]: Before will be send:", result);
+  // // отправлены данные на сервер.Есть ключь строки и имя действия
 };

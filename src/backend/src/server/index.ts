@@ -1,24 +1,23 @@
 const http = require("http");
 const Koa = require("koa");
-const cors = require('@koa/cors');
+const cors = require("@koa/cors");
 const logger = require("koa-logger");
 
 // import { Server } from "ws";
 
 // import { koaBody } from 'koa-body';
-const WS = require('ws');
+const WS = require("ws");
+const WSServerBody = require("./web-socket");
 
 const app = new Koa();
 
 app.use(logger());
 app.use(cors());
 
-
 const server = new http.createServer(app.callback());
 const wss = new WS.Server({ server });
-const WSServerBody = require("./web-socket");
 
-console.log('[WSServerBody]: ');
+console.log("[WSServerBody]: ");
 app.use(async (ctx: any) => {
   console.log(`[WSServerBody]: ${ctx.host}`);
 });
@@ -29,16 +28,15 @@ app.use(async (ctx: any) => {
 //   await next();
 // })
 
-
-app.use(async (ctx: any) => {
+app.use(async (ctx: any): Promise<void> => {
   ctx.body = `Request Body: ${JSON.stringify(ctx.request.method)} and  PORT: ${PORT}`;
-  console.log('ctx.status', ctx.status);
-})
-WSServerBody(wss, WS);
-const PORT = process.env.PORT || 7070;
-console.log('[HOST]: ', process.env.HOST);
-console.log('[PORT]: process.env.PORT:', process.env.PORT + '|| PORT' + PORT);
-server.listen(PORT, () => {
+  console.log("ctx.status", ctx.status);
+});
 
-  console.log('[serve: Server has been started.] ')
-})
+WSServerBody(wss, WS);
+const PORT = String(7070); // process.env.PORT ??
+console.log("[HOST]: ", process.env.HOST);
+console.log("[PORT]: process.env.PORT:", `${process.env.PORT}|| PORT: ${PORT}`);
+server.listen(PORT, () => {
+  console.log("[serve: Server has been started.] ");
+});

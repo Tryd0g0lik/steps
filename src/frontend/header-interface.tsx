@@ -1,5 +1,3 @@
-
-
 /**
  * Intarface is name "HeadersInterfaces"
   @param header:string;

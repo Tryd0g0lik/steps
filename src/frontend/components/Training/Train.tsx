@@ -1,21 +1,20 @@
 import React from "react";
-const Publisher = require("../../steps/publisher-data/index.ts");
-
 import ListRecords from "../Records/index.tsx";
 
 export default function TrainFC(): React.JSX.Element {
-  // const publisher = new Publisher()
-  // const resp = publisher.dataGetForPublish;
-  let resp = '{}';
-  if (localStorage.getItem('heandlersData') || localStorage.getItem('heandlersData') !== null) {
-    resp = localStorage.getItem('heandlersData') as string;
+  let resp = "{}";
+  let result = localStorage.getItem("heandlersData");
+  if (result !== null && (typeof result).includes("string")) {
+    resp = result;
   } else {
-    localStorage.setItem('heandlersData', '{}');
-    resp = localStorage.getItem('heandlersData') as string;
+    localStorage.setItem("heandlersData", "{}");
+    result = localStorage.getItem("heandlersData");
+    if (result !== null) {
+      resp = result;
+    }
   }
 
-
-    return (
+  return (
       <>
         <ul className="head">
           <li>Дата (ДД.ММ.ГГ)</li>
@@ -27,7 +26,5 @@ export default function TrainFC(): React.JSX.Element {
           <ListRecords obj={resp} />
         </div>
       </>
-    );
-
-
+  );
 }

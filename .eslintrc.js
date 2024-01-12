@@ -5,30 +5,31 @@ module.exports = {
     "commonjs": true,
     "es6": true
   },
+  "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@stylistic",
-    "@stylistic/js",
+    "react",
     "eslint-plugin-react",
     "@typescript-eslint",
-    "react"
+    "@stylistic",
+    "@stylistic/js",
+    "@stylistic/eslint-plugin-ts",
+    "@stylistic/jsx",
+    "@stylistic/eslint-plugin-plus"
   ],
   "extends": [
-    'eslint:recommended', // https://typescript-eslint.io/linting/configs#eslint-recommended
+
+    "eslint:recommended", // https://typescript-eslint.io/linting/configs#eslint-recommended
     "plugin:react/recommended",
     "standard-with-typescript",
-    // "react-app",
     "airbnb-typescript",
     "react-app/jest",
-    "plugin:@typescript-eslint/recommended", // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
+    // "plugin:@typescript-eslint/recommended", // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "plugin:@typescript-eslint/recommended-type-checked", // https://typescript-eslint.io/linting/configs#recommended-type-checked
-    "plugin:@typescript-eslint/strict",  // https://typescript-eslint.io/linting/configs#strict
-
-
+    "plugin:@typescript-eslint/strict", // https://typescript-eslint.io/linting/configs#strict
+    "plugin:@typescript-eslint/strict-type-checked", // https://typescript-eslint.io/linting/configs/#strict-type-checked
   ],
 
-
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": { // https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
+  "parserOptions": { // Configure parserOptions to enable support for other ECMAScript versions as well as JSX. https://typescript-eslint.io/linting/typed-linting/monorepos#one-tsconfigjson-per-package-and-an-optional-one-in-the-root
     "project": true,
     "ecmaVersion": "ES2021",
     "sourceType": "module",
@@ -37,19 +38,21 @@ module.exports = {
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
-      "ts": true
+      "tsx": true
     }
   },
-
+  // автобус 15-ого ершыювеверни в барнаул
   "rules": {
-    "react/prop-types": 0,
-    "quotes": "off",
-    '@stylistic/js/indent': ['error', 2],
-    "@typescript-eslint/quotes": ["error", "double"],
-    "@stylistic/js/no-mixed-spaces-and-tabs": "error",
-    "@stylistic/indent": ["error", 2],
-    "@typescript-eslint/no-non-null-assertion": "error",
+    "no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "off",
 
+    "quotes": "off",
+    "@typescript-eslint/quotes": [
+      "error",
+      "double"
+    ],
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -58,24 +61,46 @@ module.exports = {
         "tsx": "always"
       }
     ],
-    "import/no-unresolved": "off",
-    "@typescript-eslint/strict-boolean-expressions": ["error", { allowNullableNumber: false }],
-    "@typescript-eslint/no-unsafe-argument": "error"
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "dot-notation": "off",
+
+    "@typescript-eslint/dot-notation": ["error", {
+      "allowPrivateClassPropertyAccess": true,
+      "allowProtectedClassPropertyAccess": true,
+      "allowIndexSignaturePropertyAccess": true
+    }],
+    "accessor-pairs": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/consistent-type-assertions": "off",
+    "@typescript-eslint/prefer-includes": "error",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "functions": "never"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    // "@typescript-eslint/non-nullable-type-assertion-style": "error",
+    "object-shorthand": ["error", "never"]
 
   },
   "overrides": [
-    {
-      "exclude": [
-        "node_modules",
-        "**/node_modules",
-        "**/dist"
-
-      ],
-      "files": [
-        "src/index.tsx",
-        "src/backend/.eslintrc.js"
-
-      ]
-    }
-  ],
+  // {
+  //   "exclude": [
+  //     "node_modules",
+  //     "**/node_modules",
+  //     "**/dist"
+  //   ]
+  // },
+  // {
+  //   "files": [
+  //     "src/index.tsx",
+  //   ]
+  // }
+  ]
 }

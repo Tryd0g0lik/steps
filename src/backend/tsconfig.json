@@ -14,7 +14,11 @@
     "dist",
     "../../archive"
   ],
-  "include": [
-    "./src/server"
+  "files": [
+    ".\\src\\server\\index.ts",
+    ".\\src\\server\\web-socket\\index.ts"
   ]
+  // "include": [
+  //   "../../dist/server"
+  // ]
 }
