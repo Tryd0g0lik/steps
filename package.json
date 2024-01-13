@@ -7,7 +7,7 @@
     "node": ">=18",
     "yarn": ">=1.22.21"
   },
-  "description": "0.4.2 - IDE fields; 0.4.1 - There is DELETE function for a position remove; 0.4.0 - Add test a component;  0.3.1 - page's records is updated auto; ",
+  "description": "5 - Here   a sorting will been  make; 0.4.2 - IDE fields; 0.4.1 - There is DELETE function for a position remove; 0.4.0 - Add test a component;  0.3.1 - page's records is updated auto; ",
   "workspaces": [
     "./src/backend"
   ],

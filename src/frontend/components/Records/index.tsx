@@ -1,6 +1,7 @@
 import React from "react";
 import handlerDelte from "../../steps/handlers/line-delete/index.ts";
 import hendlerEdit from "../../steps/handlers/line-edit/index.ts";
+import sorter from "../../steps/sorter/index.ts";
 
 interface ObjLocalStorage {
   obj: string
@@ -14,12 +15,14 @@ type KRecords = string;
  * @returns React component.
  */
 export default function Records({ obj }: ObjLocalStorage): React.JSX.Element | undefined {
-  const o = JSON.parse(obj) as Record<string, Record<string, string>>;
+  const objJSON = JSON.parse(obj) as Record<string, Record<string, string>>;
+  const objSorting = sorter(objJSON);
   console.log("[Records: ]", obj);
-  const objKey = Object.keys(o);
-  console.log("[Records: ] objKey:", o);
-  console.log("[Records: ] obj[...]:", o[objKey[0]]);
+  const objKey = Object.keys(objSorting);
+  console.log("[Records: ] objKey:", objJSON);
+  console.log("[Records: ] obj[...]:", objJSON[objKey[0]]);
   if (objKey.length === 0) return;
+
   const edit = "🖉";
   const delet = "✗";
   console.log(["Records: "], obj);
@@ -28,8 +31,8 @@ export default function Records({ obj }: ObjLocalStorage): React.JSX.Element | u
       <>
         {objKey.map((keyRecord: KRecords) => (
           < ul className="content" key={keyRecord} >
-            <li>{o[keyRecord].date}</li>
-            <li data-testid='distance'>{o[keyRecord].distance}</li>
+            <li>{objJSON[keyRecord].date}</li>
+            <li data-testid='distance'>{objJSON[keyRecord].distance}</li>
             <li>
               <button type="submit" data-key={keyRecord} data-name="delete" onClick={handlerDelte}>{delet}</button> </li>
             <li>

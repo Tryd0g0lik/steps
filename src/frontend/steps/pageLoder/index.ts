@@ -9,7 +9,7 @@ const pageLoder = (item: Record<string, Array<Record<string, string>>>): void =>
       (ws.readyState < 1 || ws.readyState > 1)
     )) {
     console.log("[pageLoder WS] has been ran");
-    ws = new WSocket("wss://steps-u8bq.onrender.com"); // ws://localhost:7070
+    ws = new WSocket("ws://localhost:7070"); // ws://localhost:7070 // wss://steps-u8bq.onrender.com
     console.log("[pageLoder WS] has been made");
     console.log("[pageLoder WS] ws.readyState: ", ws.readyState);
     console.log("[pageLoder WS] has been JSON confert");

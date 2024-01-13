@@ -1,18 +1,19 @@
 import React from "react";
-import ListRecords from "../Records/index.tsx";
+import Records from "../Records/index.tsx";
 
 export default function TrainFC(): React.JSX.Element {
   let resp = "{}";
-  let result = localStorage.getItem("heandlersData");
+  const result = localStorage.getItem("heandlersData");
   if (result !== null && (typeof result).includes("string")) {
     resp = result;
-  } else {
-    localStorage.setItem("heandlersData", "{}");
-    result = localStorage.getItem("heandlersData");
-    if (result !== null) {
-      resp = result;
-    }
   }
+  // else {
+  //   localStorage.setItem("heandlersData", "{}");
+  //   result = localStorage.getItem("heandlersData");
+  //   if (result !== null) {
+  //     resp = result;
+  //   }
+  // }
 
   return (
       <>
@@ -23,7 +24,7 @@ export default function TrainFC(): React.JSX.Element {
         </ul>
 
         <div className="contentBlock">
-          <ListRecords obj={resp} />
+        <Records obj={resp} />
         </div>
       </>
   );
