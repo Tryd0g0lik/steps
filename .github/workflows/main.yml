@@ -44,7 +44,6 @@ jobs:
       - name: Build-All
         run: yarn run build:dev
 
-
       - name: Setup Pages
         uses: actions/configure-pages@v2
 
