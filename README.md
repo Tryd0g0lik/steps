@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/aqk9nqdmr3wuigt1/branch/master?svg=true)](https://ci.appveyor.com/project/Tryd0g0lik/steps/branch/master)
 
+Backend подключение примерно 50 сек.
 
 Должна быть форма ввода, в которую вводится дата и количество пройденных километров. Новые значения добавляются в таблицу при отправке формы.
 
